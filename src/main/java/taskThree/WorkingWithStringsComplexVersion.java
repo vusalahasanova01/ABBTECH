@@ -6,7 +6,7 @@ public class WorkingWithStringsComplexVersion {
     private final static String[][] scedule = new String[7][2];
     private static boolean statement = true;
 
-    public WorkingWithStringsComplexVersion() {
+    private static  void fillScedule() {
         scedule[0][0] = "Sunday";
         scedule[0][1] = "do home work";
         scedule[1][0] = "Monday";
@@ -31,8 +31,10 @@ public class WorkingWithStringsComplexVersion {
             if (dayOfWeek.startsWith("change") || dayOfWeek.startsWith("reschedule")) {
                 String[] dayOfSplit = dayOfWeek.split(" ");
                 dayOfWeek = dayOfSplit[dayOfSplit.length - 1];
+                System.out.println("Please, input new tasks for "+dayOfSplit[dayOfSplit.length-1]);
                 changeDayOfWeek(dayOfWeek);
             } else {
+                System.out.println("The task for "+dayOfWeek);
                 selectDayOfWeek(dayOfWeek);
             }
 
@@ -40,6 +42,7 @@ public class WorkingWithStringsComplexVersion {
     }
 
     public static void main(String[] args) {
+        fillScedule();
         select();
 
     }
@@ -51,6 +54,7 @@ public class WorkingWithStringsComplexVersion {
                 break;
             case "monday":
                 System.out.println(scedule[1][1]);
+                break;
             case "tuesday":
                 System.out.println(scedule[2][1]);
                 break;
@@ -81,7 +85,7 @@ public class WorkingWithStringsComplexVersion {
                 break;
             case "monday":
                 scedule[1][1] = sc.nextLine();
-
+                break;
             case "tuesday":
                 scedule[2][1] = sc.nextLine();
                 break;

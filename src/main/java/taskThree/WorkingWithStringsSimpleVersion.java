@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class WorkingWithStringsSimpleVersion {
     private final static Scanner sc = new Scanner(System.in);
     private final static String[][] scedule = new String[7][2];
-    public WorkingWithStringsSimpleVersion(){
+    private static void fillScedule(){
         scedule[0][0] = "Sunday";
         scedule[0][1] = "do home work";
         scedule[1][0] = "Monday";
@@ -22,6 +22,7 @@ public class WorkingWithStringsSimpleVersion {
         scedule[6][1] = "go to school";
     }
     public static void main(String[] args) {
+        fillScedule();
         boolean statement = true;
         while (statement) {
             System.out.println("Please, input the day of the week:");
