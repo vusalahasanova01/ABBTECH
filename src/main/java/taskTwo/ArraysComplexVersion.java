@@ -49,8 +49,9 @@ public class ArraysComplexVersion {
             boolean selection = false;
             if (selectedX > 0 && selectedX <= array.length && selectedY > 0 && selectedY <= array.length) {
                 for (int i = 0; i < cells.length; i++) {
-                    if (selectedX == cells[i][0] && selectedY == cells[i][1] && array[selectedX - 1][selectedX - 1] == 'x') {
+                    if (selectedX == cells[i][0] && selectedY == cells[i][1] && array[selectedX - 1][selectedY - 1] == 'x') {
                         selection = true;
+                        consoleArray(array);
                     } else if (selectedX == cells[i][0] && selectedY == cells[i][1]) {
                         array[selectedX - 1][selectedY - 1] = 'x';
                         consoleArray(array);
