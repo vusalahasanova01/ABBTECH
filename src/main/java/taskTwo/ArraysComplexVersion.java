@@ -20,11 +20,11 @@ public class ArraysComplexVersion {
         for (int i = 0; i <= exArray.length; i++) {
             for (int j = 0; j <= exArray.length; j++) {
                 if (i == 0) {
-                    System.out.print((k++) + " ");
+                    System.out.print((k++) + " | ");
                 } else if (j == 0) {
-                    System.out.print((m++) + "|");
+                    System.out.print((m++) + " | ");
                 } else {
-                    System.out.print(exArray[i - 1][j - 1] + "|");
+                    System.out.print(exArray[i - 1][j - 1] + " | ");
                 }
             }
             System.out.println();
@@ -38,9 +38,12 @@ public class ArraysComplexVersion {
             System.out.println("Enter  column and row number for game:");
             String x = sc.nextLine();
             int selectedX = check(x);
+            if (selectedX == -1) {
+                continue;
+            }
             String y = sc.nextLine();
             int selectedY = check(y);
-            if (selectedX == -1 || selectedY == -1) {
+            if (selectedY == -1) {
                 continue;
             }
             boolean selection = false;
@@ -109,7 +112,6 @@ public class ArraysComplexVersion {
                 for (int i = 0; i < 3; i++) {
                     cells[i][0] = randomX;
                     cells[i][1] = randomY + i;
-
                 }
             } else if (randomX == 5) {
                 for (int i = 0; i < 3; i++) {
@@ -121,16 +123,14 @@ public class ArraysComplexVersion {
                     cells[i + 1][0] = randomX;
                     cells[i + 1][1] = randomY + i;
                 }
-
             }
-
         }
 
     }
 
     private static boolean checkingNumber(String enteredCells) {
         //Checks whether the value entered with this method is int and String
-        boolean parse = enteredCells != " ";
+        boolean parse = !enteredCells.equals("");
         for (int i = 0; i < enteredCells.length(); i++) {
             parse = enteredCells.charAt(i) == '1' || enteredCells.charAt(i) == '2'
                     || enteredCells.charAt(i) == '3' || enteredCells.charAt(i) == '4' ||
