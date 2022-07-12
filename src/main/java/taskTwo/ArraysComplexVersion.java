@@ -80,9 +80,11 @@ public class ArraysComplexVersion {
                 array[i][j] = '-';
             }
         }
+        //we add 1 to the random ones because the points in the table start from one, not from zero
         int randomX = rnd.nextInt(array.length) + 1;
         int randomY = rnd.nextInt(array.length) + 1;
-        int directionOfCells = rnd.nextInt(2);
+        int directionOfCells = rnd.nextInt(2); //this part determines whether it is horizontal or vertical.
+        // 0 = horizontal and 1 = vertical
 
         if (directionOfCells == 0) { //vertical
             if (randomX == 1) {
