@@ -32,7 +32,12 @@ public class Family {
         }
 
     }
-
+    static{
+        System.out.println("a new class is being loaded "+ Family.class.getName());
+    }
+    {
+        System.out.println("a new object is created" + this.getClass());
+    }
     public void setChildren(Human[] children) {
         this.children = children;
     }

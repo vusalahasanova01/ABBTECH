@@ -1,5 +1,6 @@
 package TaskFive;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Human {
@@ -9,6 +10,15 @@ public class Human {
     private int iq;
     private String[][] schedule;
     private Family family;
+    private EnumForFamily role = EnumForFamily.NONE;
+
+    public EnumForFamily getRole() {
+        return role;
+    }
+
+    public void setRole(EnumForFamily role) {
+        this.role = role;
+    }
 
     public Family getFamily() {
         return family;
@@ -78,7 +88,12 @@ public class Human {
         this.iq = iq;
         this.schedule = schedule;
     }
-
+    static{
+        System.out.println("a new class is being loaded "+ Human.class.getName());
+    }
+    {
+        System.out.println("a new object is created" + this.getClass());
+    }
     public void greetPet() {
         System.out.printf("Hello,%s \n", family.pet.getNickname());
     }
@@ -127,7 +142,7 @@ public class Human {
                 ", surname='" + surname + '\'' +
                 ", year=" + year +
                 ", iq=" + iq +
-                "schedule" + schedule +
+                "schedule" + Arrays.deepToString(schedule) +
                 '}';
     }
 }

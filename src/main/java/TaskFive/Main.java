@@ -16,7 +16,6 @@ public class Main {
         //using second consturctor
         Pet cat = new Pet ("duman", "cat");
          */
-
         // using third constructor
         Pet dog = new Pet("zevs", "dog", 5, 50, new String[]{"eating",
                 "playing"});
@@ -50,7 +49,6 @@ public class Main {
         //using second constu rctor
         Pet cat4 = new Pet("duman", "cat");
         */
-
         // using third constructor
         Pet dog1 = new Pet("zevs", "dog", 5, 50, new String[]{"eating", "playing"});
         Human mother = new Human("Aypara", "Qafarova", 1977, 70, new String[][]{{"Monday",

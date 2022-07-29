@@ -65,7 +65,12 @@ public class Pet {
         this.trickLevel = trickLevel;
         this.habits = habits;
     }
-
+    static{
+        System.out.println("a new class is being loaded "+ Pet.class.getName());
+    }
+    {
+        System.out.println("a new object is created" + this.getClass());
+    }
     public void eat() {
         System.out.println("I am eating");
     }
