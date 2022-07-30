@@ -128,11 +128,20 @@ public class Human {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (this == o) return true;
-        Human human = (Human) o;
-        return year == human.year
-                && name.equals(human.name)
-                && surname.equals(human.surname)
-                && family.father.name.equals(human.family.father.name);
+        if(role == EnumForFamily.MOTHER || role == EnumForFamily.FATHER || role == EnumForFamily.NONE) {
+            Human human = (Human) o;
+            return year == human.year
+                    && name.equals(human.name)
+                    && surname.equals(human.surname);
+        }
+        else {
+            Human human = (Human) o;
+            return year == human.year
+                    && name.equals(human.name)
+                    && surname.equals(human.surname)
+                    && family.father.name.equals(human.family.father.name);
+        }
+
     }
 
     @Override 

@@ -15,20 +15,26 @@ public class Family {
 
     public Family(Human mother, Human father) {
         this.father = father;
+        this.father.setRole(EnumForFamily.FATHER);
         this.mother = mother;
+        this.mother.setRole(EnumForFamily.MOTHER);
+
         this.mother.setFamily(this);
         this.father.setFamily(this);
     }
 
     public Family(Human mother, Human father, Pet pet, Human... children) {
         this.mother = mother;
+        this.mother.setRole(EnumForFamily.MOTHER);
         this.father = father;
+        this.father.setRole(EnumForFamily.FATHER);
         this.pet = pet;
         this.children = children;
         this.mother.setFamily(this);
         this.father.setFamily(this);
         for (int i = 0; i < children.length; i++) {
             this.children[i].setFamily(this);
+            this.children[i].setRole(EnumForFamily.CHILD);
         }
 
     }
@@ -66,23 +72,25 @@ public class Family {
             children[i] = backUpChildren[i];
         }
         child.setFamily(this);
+        child.setRole(EnumForFamily.CHILD);
         children[backUpChildren.length] = child;
 
     }
 
     public boolean deleteChild(int index) {
-        children[index].setFamily(null);
-        if (index >= 0 && index <= children.length) {
+        if (index >= 0 && index < children.length) {
+            children[index].setFamily(null);
+            children[index].setRole(EnumForFamily.NONE);
             Human[] deleteChildren = new Human[children.length - 1];
             for (int i = 0; i < children.length - 1; i++) {
-                if (i == index || index > i) {
+                if (i >= index) {
                     deleteChildren[i] = children[i + 1];
                 } else {
                     deleteChildren[i] = children[i];
                 }
             }
-            children = new Human[deleteChildren.length];
-            System.arraycopy(deleteChildren, 0, children, 0, deleteChildren.length);
+            children = deleteChildren;
+
             return true;
         } else return false;
 
@@ -94,6 +102,7 @@ public class Family {
             for (int i = 0; i < children.length; i++) {
                 if (children[i].equals(o)) {
                     children[i].setFamily(null);
+                    children[i].setRole(EnumForFamily.NONE);
                     System.arraycopy(children, 0, deleteChildren, 0, i);
                     System.arraycopy(children, i + 1, deleteChildren, i, deleteChildren.length - i);
                 }
