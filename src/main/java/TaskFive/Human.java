@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Human {
+    // fields for human
     private String name;
     private String surname;
     private int year;
@@ -68,7 +69,7 @@ public class Human {
     public void setSchedule(String[][] schedule) {
         this.schedule = schedule;
     }
-
+   // constructors
     public Human() {
     }
 

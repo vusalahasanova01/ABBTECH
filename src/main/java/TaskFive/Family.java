@@ -4,12 +4,13 @@ import java.util.Arrays;
 
 
 public class Family {
+    // fields for family
     Human mother;
     Human father;
     Human[] children = new Human[0];
     Pet pet;
 
-
+    // constructors
     public Family() {
     }
 
@@ -38,9 +39,11 @@ public class Family {
         }
 
     }
+    // static block
     static{
         System.out.println("a new class is being loaded "+ Family.class.getName());
     }
+    //istance block
     {
         System.out.println("a new object is created" + this.getClass());
     }
@@ -112,7 +115,7 @@ public class Family {
         }
         return false;
     }
-
+     // i write count family this method.Because there are father, mother and numbers of children in the family.
     public int countFamily() {
         return children.length + 2;
     }

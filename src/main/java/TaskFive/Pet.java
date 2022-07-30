@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Pet {
+    // fields for pet
     private String species;
     private String nickname;
     private int age;
@@ -50,6 +51,7 @@ public class Pet {
         this.habits = habits;
     }
 
+    //constructors
     public Pet() {
     }
 
