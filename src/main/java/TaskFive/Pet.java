@@ -5,17 +5,17 @@ import java.util.Objects;
 
 public class Pet {
     // fields for pet
-    private String species;
+    private Species species;
     private String nickname;
     private int age;
     private int trickLevel;
     private String[] habits;
 
-    public String getSpecies() {
+    public Species getSpecies() {
         return species;
     }
 
-    public void setSpecies(String species) {
+    public void setSpecies(Species species) {
         this.species = species;
     }
 
@@ -55,12 +55,12 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(String nickname, String species) {
+    public Pet(String nickname, Species species) {
         this.species = species;
         this.nickname = nickname;
     }
 
-    public Pet(String nickname, String species,int age, int trickLevel, String[] habits) {
+    public Pet(String nickname, Species species,int age, int trickLevel, String[] habits) {
         this.nickname = nickname;
         this.species = species;
         this.age =age;
@@ -103,10 +103,18 @@ public class Pet {
         result = 31 * result + Arrays.hashCode(habits);
         return result;
     }
+    @Override
+    protected void finalize() throws Throwable{
+        System.out.println("Finalize method is called.");
+        super.finalize();
+    }
 
     @Override
     public String toString() {
-        return  species +"{" +
+        return species + "{" +
+                (species.isCanFly() ?  species.name()+ ", can fly": "animal can't fly") +
+                (species.isHasfur() ? species.name()+ ", has fur": "animal doesn't have fur") +
+                "number of legs " + species.getNumberOfLegs() +
                 ", nickname='" + nickname + '\'' +
                 ", age=" + age +
                 ", trickLevel=" + trickLevel +
