@@ -67,8 +67,7 @@ public class Family {
         return pet;
     }
 
-    public boolean addChild(Human child) {
-        int lengthChildren = children.length;
+    public void addChild(Human child) {
         Human[] backUpChildren;
         backUpChildren = children;
         children = new Human[1 + backUpChildren.length];
@@ -79,13 +78,9 @@ public class Family {
         child.setRole(EnumForFamily.CHILD);
         children[backUpChildren.length] = child;
 
-        if(lengthChildren == children.length-1) return true;
-        else  return false;
-
     }
 
     public boolean deleteChild(int index) {
-        int lengthChildren = children.length;
         if (index >= 0 && index < children.length) {
             children[index].setFamily(null);
             children[index].setRole(EnumForFamily.NONE);
@@ -99,13 +94,12 @@ public class Family {
             }
             children = deleteChildren;
 
-        }
-        if(lengthChildren == children.length+1) return true;
-        else  return false;
+            return true;
+        } else return false;
+
     }
 
     public boolean deleteChild(Human o) {
-        int lengthChildren = children.length;
         if (o != null) {
             Human[] deleteChildren = new Human[children.length - 1];
             for (int i = 0; i < children.length; i++) {
@@ -117,9 +111,9 @@ public class Family {
                 }
             }
             children = deleteChildren;
+            return true;
         }
-     if(lengthChildren == children.length+1) return true;
-     else  return false;
+        return false;
     }
      // i write count family this method.Because there are father, mother and numbers of children in the family.
     public int countFamily() {
@@ -136,12 +130,6 @@ public class Family {
                 && Arrays.equals(children, family.children)
                 && pet.equals(family.pet);
         }
-    @Override
-    protected void finalize() throws Throwable{
-        System.out.println("Finalize method is called.");
-        super.finalize();
-    }
-
     @Override
     public String toString() {
         return "Family{" +

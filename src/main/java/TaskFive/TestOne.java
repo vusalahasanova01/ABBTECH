@@ -6,7 +6,7 @@ public class TestOne {
 
     @Test
     public void testAddChild(){
-        Pet dog = new Pet("zevs", Species.DOG, 5, 50, new String[]{"eating",
+        Pet dog = new Pet("zevs", "dog", 5, 50, new String[]{"eating",
                 "playing"});
         Human mother = new Human("Aypara", "Qafarova", 1977, 70, new String[][]{{"Monday",
                 "Reading book"},
@@ -27,7 +27,7 @@ public class TestOne {
     }
     @Test
     public void testDeleteChildWithObject(){
-        Pet dog = new Pet("zevs", Species.DOG, 5, 50, new String[]{"eating",
+        Pet dog = new Pet("zevs", "dog", 5, 50, new String[]{"eating",
                 "playing"});
         Human mother = new Human("Aypara", "Qafarova", 1977, 70, new String[][]{{"Monday",
                 "Reading book"},
@@ -46,7 +46,7 @@ public class TestOne {
     }
     @Test
     public void testDeleteChildWithIndex(){
-        Pet dog = new Pet("zevs", Species.DOG, 5, 50, new String[]{"eating",
+        Pet dog = new Pet("zevs", "dog", 5, 50, new String[]{"eating",
                 "playing"});
         Human mother = new Human("Aypara", "Qafarova", 1977, 70, new String[][]{{"Monday",
                 "Reading book"},
@@ -65,7 +65,7 @@ public class TestOne {
     }
    @Test
     public void TestCountFamily(){
-       Pet dog = new Pet("zevs", Species.DOG, 5, 50, new String[]{"eating",
+       Pet dog = new Pet("zevs", "dog", 5, 50, new String[]{"eating",
                "playing"});
        Human mother = new Human("Aypara", "Qafarova", 1977, 70, new String[][]{{"Monday",
                "Reading book"},
@@ -82,7 +82,7 @@ public class TestOne {
    }
    @Test
     public void TestEqualsFamily(){
-       Pet dog = new Pet("zevs", Species.DOG, 5, 50, new String[]{"eating",
+       Pet dog = new Pet("zevs", "dog", 5, 50, new String[]{"eating",
                "playing"});
        Human mother = new Human("Aypara", "Qafarova", 1977, 70, new String[][]{{"Monday",
                "Reading book"},
@@ -93,7 +93,7 @@ public class TestOne {
        Human zohre1 = new Human("Zohra", "Qafarova", 2001, 90,
                new String[][]{{"Monday", "Reading book"}, {"Sunday", "Watching film"}});
        Family family1 = new Family(mother, father, dog, zohre1);
-       Pet dog1 = new Pet("zevs", Species.DOG, 5, 50, new String[]{"eating", "playing"});
+       Pet dog1 = new Pet("zevs", "dog", 5, 50, new String[]{"eating", "playing"});
        Human mother1 = new Human("Aypara", "Qafarova", 1977, 70, new String[][]{{"Monday",
                "Reading book"},
                {"Sunday", "Watching film"}});
@@ -115,9 +115,9 @@ public class TestOne {
    }
    @Test
     public void testEqualPet(){
-       Pet dog = new Pet("zevs", Species.DOG, 5, 50, new String[]{"eating",
+       Pet dog = new Pet("zevs", "dog", 5, 50, new String[]{"eating",
                "playing"});
-       Pet dog1 = new Pet("zevs", Species.DOG, 5, 50, new String[]{"eating",
+       Pet dog1 = new Pet("zevs", "dog", 5, 50, new String[]{"eating",
                "playing"});
        assertEquals(dog,dog1);
    }
