@@ -6,19 +6,23 @@ public class Main {
         //Family1();
         System.out.println("-------------------------------------------------------------------------");
         //mainTwo();
-        for (int i = 0; i < 1000000 ; i++) {
-            Human human = new Human();
-        }
+        //for (int i = 0; i < 1000000 ; i++) {
+        //     Human human = new Human();
+        // }
+        // Human vusala =  new Human("Vusala", "Qafarova", 2001, 100,
+        //          new String[][]{{DayOfWeek.MONDAY.name(), "Reading book"}, {DayOfWeek.SUNDAY.name(), "Watching film"}});
 
-
-
+        // System.out.println(vusala);
+        Pet dog = new Pet("zevs", Species.DOG, 5, 50, new String[]{"eating",
+                "playing"});
+        System.out.println(dog);
     }
 
 
     public static void Family1() {
-       Pet cat1 = new Pet("mila", Species.CAT, 3, 40, new String[]{"play,eating"}); //using empty constructor
+        Pet cat1 = new Pet("mila", Species.CAT, 3, 40, new String[]{"play,eating"}); //using empty constructor
         //using second consturctor
-        Pet cat = new Pet ("duman", Species.CAT);
+        Pet cat = new Pet("duman", Species.CAT);
 
         // using third constructor
         Pet dog = new Pet("zevs", Species.CAT, 5, 50, new String[]{"eating",
@@ -80,5 +84,5 @@ public class Main {
         Human revan = new Human("Revan", "Ahmedov", 2011, 35,
                 new String[][]{{DayOfWeek.MONDAY.name(), "playing game"}, {"Sunday", "Reading book"}});
 
-   }
+    }
 }

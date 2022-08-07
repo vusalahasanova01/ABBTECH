@@ -63,16 +63,19 @@ public class Pet {
     public Pet(String nickname, Species species, int age, int trickLevel, String[] habits) {
         this.nickname = nickname;
         this.species = species;
-        this.age =age;
+        this.age = age;
         this.trickLevel = trickLevel;
         this.habits = habits;
     }
-    static{
-        System.out.println("a new class is being loaded "+ Pet.class.getName());
+
+    static {
+        System.out.println("a new class is being loaded " + Pet.class.getName());
     }
+
     {
         System.out.println("a new object is created" + this.getClass());
     }
+
     public void eat() {
         System.out.println("I am eating");
     }
@@ -81,6 +84,7 @@ public class Pet {
         System.out.printf("Hello, owner. I am, %s. I miss you!\n", this.nickname);
 
     }
+
     public void foul() {
         System.out.println("I need to cover it up");
     }
@@ -103,8 +107,9 @@ public class Pet {
         result = 31 * result + Arrays.hashCode(habits);
         return result;
     }
+
     @Override
-    protected void finalize() throws Throwable{
+    protected void finalize() throws Throwable {
         System.out.println("Finalize method is called.");
         super.finalize();
     }
@@ -112,8 +117,8 @@ public class Pet {
     @Override
     public String toString() {
         return species + "{" +
-                (species.isCanFly() ?  species.name()+ ", can fly": "animal can't fly") +
-                (species.isHasfur() ? species.name()+ ", has fur": "animal doesn't have fur") +
+                (species.isCanFly() ? species.name() + ", can fly" : "animal can't fly") +
+                (species.isHasfur() ? species.name() + ", has fur" : "animal doesn't have fur") +
                 "number of legs " + species.getNumberOfLegs() +
                 ", nickname='" + nickname + '\'' +
                 ", age=" + age +

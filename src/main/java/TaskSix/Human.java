@@ -1,6 +1,7 @@
 package TaskSix;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 
 public class Human {
@@ -69,7 +70,8 @@ public class Human {
     public void setSchedule(String[][] schedule) {
         this.schedule = schedule;
     }
-   // constructors
+
+    // constructors
     public Human() {
     }
 
@@ -89,21 +91,26 @@ public class Human {
         this.iq = iq;
         this.schedule = schedule;
     }
-    static{
-        System.out.println("a new class is being loaded "+ Human.class.getName());
+
+    static {
+        System.out.println("a new class is being loaded " + Human.class.getName());
     }
+
     {
         System.out.println("a new object is created" + this.getClass());
     }
+
     public void greetPet() {
-        System.out.printf("Hello,%s \n", family.pet.getNickname());
+        System.out.printf("Hello,%s \n", family.getPet().getNickname());
     }
 
     public void describePet() {
-        if (family.pet.getTrickLevel() > 50) {
-            System.out.printf("I have a %s, he is %d years old, he is  very sly \n", family.pet.getSpecies(), family.pet.getAge());
+        if (family.getPet().getTrickLevel() > 50) {
+            System.out.printf("I have a %s, he is %d years old, he is  very sly \n", family.getPet().getSpecies(),
+                    family.getPet().getAge());
         } else {
-            System.out.printf("I have a %s, he is %d years old, he is almost not sly\n ", family.pet.getSpecies(), family.pet.getAge());
+            System.out.printf("I have a %s, he is %d years old, he is almost not sly\n ", family.getPet().getSpecies(),
+                    family.getPet().getAge());
 
         }
     }
@@ -112,15 +119,15 @@ public class Human {
         Random rnd = new Random();
         int randomTrickLevel = rnd.nextInt();
         if (!timeForFeed) {
-            if (randomTrickLevel < family.pet.getTrickLevel()) {
-                System.out.printf("Hm... I will feed Jack's %s \n", family.pet.getNickname());
+            if (randomTrickLevel < family.getPet().getTrickLevel()) {
+                System.out.printf("Hm... I will feed Jack's %s \n", family.getPet().getNickname());
                 return true;
             } else {
                 System.out.println("I think Jack is not hungry.");
                 return false;
             }
         } else {
-            System.out.printf("Hm... I will feed Jack's %s \n", family.pet.getNickname());
+            System.out.printf("Hm... I will feed Jack's %s \n", family.getPet().getNickname());
             return true;
         }
     }
@@ -129,30 +136,37 @@ public class Human {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (this == o) return true;
-        if(role == EnumForFamily.MOTHER || role == EnumForFamily.FATHER || role == EnumForFamily.NONE) {
+        if (role == EnumForFamily.MOTHER || role == EnumForFamily.FATHER || role == EnumForFamily.NONE) {
             Human human = (Human) o;
             return year == human.year
                     && name.equals(human.name)
                     && surname.equals(human.surname);
-        }
-        else {
+        } else {
             Human human = (Human) o;
             return year == human.year
                     && name.equals(human.name)
                     && surname.equals(human.surname)
-                    && family.father.name.equals(human.family.father.name);
+                    && family.getFather().getName().equals(human.family.getFather().getName());
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        if (role == EnumForFamily.MOTHER || role == EnumForFamily.FATHER || role == EnumForFamily.NONE) {
+            return Objects.hash(name, surname, year);
+        } else {
+            return Objects.hash(name, surname, year, family.getFather().name);
         }
 
     }
 
-
     @Override
-    protected void finalize() throws Throwable{
+    protected void finalize() throws Throwable {
         System.out.println("Finalize method is called.");
-       super.finalize();
+        super.finalize();
     }
 
-    @Override 
+    @Override
     public String toString() {
         return "Human{" +
                 "name='" + name + '\'' +

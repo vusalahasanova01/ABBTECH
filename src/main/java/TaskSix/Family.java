@@ -1,14 +1,15 @@
 package TaskSix;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 
 public class Family {
     // fields for family
-    Human mother;
-    Human father;
-    Human[] children = new Human[0];
-    Pet pet;
+    private Human mother;
+    private Human father;
+    private Human[] children = new Human[0];
+    private Pet pet;
 
     // constructors
     public Family() {
@@ -19,7 +20,6 @@ public class Family {
         this.father.setRole(EnumForFamily.FATHER);
         this.mother = mother;
         this.mother.setRole(EnumForFamily.MOTHER);
-
         this.mother.setFamily(this);
         this.father.setFamily(this);
     }
@@ -39,17 +39,17 @@ public class Family {
         }
 
     }
+
     // static block
-    static{
-        System.out.println("a new class is being loaded "+ Family.class.getName());
+    static {
+        System.out.println("a new class is being loaded " + Family.class.getName());
     }
-    //istance block
+
+    //instance block
     {
         System.out.println("a new object is created" + this.getClass());
     }
-    public void setChildren(Human[] children) {
-        this.children = children;
-    }
+
 
     public Human getMother() {
         return mother;
@@ -67,6 +67,10 @@ public class Family {
         return pet;
     }
 
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
     public boolean addChild(Human child) {
         int lengthChildren = children.length;
         Human[] backUpChildren;
@@ -79,8 +83,7 @@ public class Family {
         child.setRole(EnumForFamily.CHILD);
         children[backUpChildren.length] = child;
 
-        if(lengthChildren == children.length-1) return true;
-        else  return false;
+        return lengthChildren == children.length - 1;
 
     }
 
@@ -100,8 +103,7 @@ public class Family {
             children = deleteChildren;
 
         }
-        if(lengthChildren == children.length+1) return true;
-        else  return false;
+        return lengthChildren == children.length + 1;
     }
 
     public boolean deleteChild(Human o) {
@@ -118,10 +120,10 @@ public class Family {
             }
             children = deleteChildren;
         }
-     if(lengthChildren == children.length+1) return true;
-     else  return false;
+        return lengthChildren == children.length + 1;
     }
-     // i write count family this method.Because there are father, mother and numbers of children in the family.
+
+    // i write count family this method.Because there are father, mother and numbers of children in the family.
     public int countFamily() {
         return children.length + 2;
     }
@@ -131,13 +133,21 @@ public class Family {
         if (o == null || getClass() != o.getClass()) return false;
         if (this == o) return true;
         Family family = (Family) o;
-        return  mother.equals(family.mother)
+        return mother.equals(family.mother)
                 && father.equals(family.father)
                 && Arrays.equals(children, family.children)
                 && pet.equals(family.pet);
-        }
+    }
+
     @Override
-    protected void finalize() throws Throwable{
+    public int hashCode() {
+        int result = Objects.hash(mother, father, pet);
+        result = 31 * result + Arrays.hashCode(children);
+        return result;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
         System.out.println("Finalize method is called.");
         super.finalize();
     }

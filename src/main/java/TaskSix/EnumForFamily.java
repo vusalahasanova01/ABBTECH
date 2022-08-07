@@ -8,6 +8,4 @@ public enum EnumForFamily {
     NONE
 
 
-
-
 }
