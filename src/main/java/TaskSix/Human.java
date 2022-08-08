@@ -168,12 +168,15 @@ public class Human {
 
     @Override
     public String toString() {
-        return "Human{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", year=" + year +
-                ", iq=" + iq +
-                "schedule" + Arrays.deepToString(schedule) +
-                '}';
+        //"Human{name='Vusala', surname='Qafarova', year=2001," +
+        //                        " iq=100schedule[[MONDAY, Reading book], [SUNDAY, Watching film]]}";
+        String result = "Human{";
+        if (name == null) result += "}";
+        else result += "name='" + name + '\'';
+        if (surname != null) result += ", surname='" + surname + '\'';
+        if (year != 0) result += ", year=" + year;
+        if (iq != 0) result += ", iq=" + iq;
+        if (schedule != null) result += "schedule" + Arrays.deepToString(schedule) + '}';
+        return result;
     }
 }

@@ -154,11 +154,9 @@ public class Family {
 
     @Override
     public String toString() {
-        return "Family{" +
-                "mother=" + mother +
-                ", father=" + father +
-                ", children=" + Arrays.toString(children) +
-                ", pet=" + pet +
-                '}';
+        String result = "Family{" + "mother=" + mother + ", father=" + father;
+        if (children != null) result += ", children=" + Arrays.toString(children);
+        if (pet != null) result += ", pet=" + pet + '}';
+        return result;
     }
 }

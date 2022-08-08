@@ -116,14 +116,22 @@ public class Pet {
 
     @Override
     public String toString() {
-        return species + "{" +
-                (species.isCanFly() ? species.name() + ", can fly" : "animal can't fly") +
-                (species.isHasfur() ? species.name() + ", has fur" : "animal doesn't have fur") +
-                "number of legs " + species.getNumberOfLegs() +
-                ", nickname='" + nickname + '\'' +
-                ", age=" + age +
-                ", trickLevel=" + trickLevel +
-                ", habits=" + Arrays.toString(habits) +
+        //"DOG{animal can't flyanimal doesn't have furnumber of legs 4, nickname='zevs'," +
+        //                " age=5, trickLevel=50, habits=[eating, playing]}";
+        String result = "{";
+        if (species != null) result = species + result;
+        else result += "}";
+        if (species.isCanFly()) result += ", can fly";
+        else result += "animal can't fly";
+        if (species.isHasfur()) result += ", has fur";
+        else result += "animal doesn't have fur";
+        if (species.getNumberOfLegs() != 0) result += "number of legs " + species.getNumberOfLegs();
+        if (nickname != null) result += ", nickname='" + nickname + '\'';
+        if (age != 0) result += ", age=" + age ;
+        if (trickLevel != 0) result += ", trickLevel=" + trickLevel;
+        if (habits != null) result += ", habits=" + Arrays.toString(habits) +
                 '}';
+        return result;
+
     }
 }
