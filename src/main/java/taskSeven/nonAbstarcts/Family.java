@@ -135,6 +135,32 @@ public  class Family implements HumanCreator {
     public int countFamily() {
         return children.length + 2;
     }
+    @Override
+    public Human bornChild() {
+        Random rnd =  new Random();
+        Human createdChild;
+        boolean gender = rnd.nextBoolean();
+        //if gender is true, gender = woman, else gender = man
+        if(gender){
+            int selectName = rnd.nextInt(nameOfWoman.size());
+            createdChild= new Woman(nameOfWoman.get(selectName),
+                    father.getSurname(),
+                    LocalDateTime.now().getYear());
+
+        }
+        else{
+            int selectName = rnd.nextInt(nameOfMan.size());
+            createdChild= new Woman(nameOfMan.get(selectName),
+                    father.getSurname(),
+                    LocalDateTime.now().getYear());
+
+        }
+        createdChild.setIq((father.getIq()+mother.getIq())/2);
+        createdChild.setRole(EnumForFamily.CHILD);
+        createdChild.setFamily(this);
+        addChild(createdChild);
+        return createdChild;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -168,31 +194,6 @@ public  class Family implements HumanCreator {
         return result;
     }
 
-    @Override
-    public Human bornChild() {
-        Random rnd =  new Random();
-        Human createdChild;
-        boolean gender = rnd.nextBoolean();
-        //if gender is true, gender = woman, else gender = man
-        if(gender){
-             int selectName = rnd.nextInt(nameOfWoman.size());
-             createdChild= new Woman(nameOfWoman.get(selectName),
-                     father.getSurname(),
-                     LocalDateTime.now().getYear());
 
-        }
-        else{
-            int selectName = rnd.nextInt(nameOfMan.size());
-            createdChild= new Woman(nameOfMan.get(selectName),
-                    father.getSurname(),
-                    LocalDateTime.now().getYear());
-
-        }
-        createdChild.setIq((father.getIq()+mother.getIq())/2);
-        createdChild.setRole(EnumForFamily.CHILD);
-        createdChild.setFamily(this);
-        addChild(createdChild);
-        return createdChild;
-    }
 
 }

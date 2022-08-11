@@ -1,6 +1,7 @@
 package taskSeven.test;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import taskSeven.nonAbstarcts.Dog;
 import taskSeven.nonAbstarcts.Family;
 import taskSeven.abstracts.Human;
@@ -251,4 +252,5 @@ public class TestFamily {
         Family family2 = new Family(mother1, father1, dog1, zohre2);
         assertFalse(family1.hashCode() == family2.hashCode());
     }
+
 }
