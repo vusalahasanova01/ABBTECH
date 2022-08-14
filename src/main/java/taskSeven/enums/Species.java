@@ -7,7 +7,7 @@ public enum Species {
     DOMESTICCAT(false, 4, true),
     UNKNOWN;
 
-    private boolean canFly; 
+    private boolean canFly;
     private  int numberOfLegs;
     private boolean hasfur;
 

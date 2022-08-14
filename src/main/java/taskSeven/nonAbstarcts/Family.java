@@ -49,13 +49,14 @@ public  class Family implements HumanCreator {
     // static block
     static {
         System.out.println("a new class is being loaded " + Family.class.getName());
+
     }
 
     //instance block
     {
+        System.out.println("a new object is created" + this.getClass());
         this.nameOfWoman = Arrays.asList("Sevinc","Sebine","Leyla","Afaq","Zehra","Ayten","Cicek");
         this.nameOfMan = Arrays.asList("Nicat","Eziz","Ceyhun","Revan","Novruz","Elnur","Kamal");
-        System.out.println("a new object is created" + this.getClass());
     }
 
 
@@ -136,7 +137,7 @@ public  class Family implements HumanCreator {
         return children.length + 2;
     }
     @Override
-    public Human bornChild() {
+    public  Human bornChild() {
         Random rnd =  new Random();
         Human createdChild;
         boolean gender = rnd.nextBoolean();

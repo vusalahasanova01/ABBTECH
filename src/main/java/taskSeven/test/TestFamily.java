@@ -1,10 +1,8 @@
 package taskSeven.test;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import taskSeven.nonAbstarcts.Dog;
 import taskSeven.nonAbstarcts.Family;
-import taskSeven.abstracts.Human;
 import taskSeven.enums.DayOfWeek;
 import taskSeven.nonAbstarcts.Man;
 import taskSeven.nonAbstarcts.Woman;

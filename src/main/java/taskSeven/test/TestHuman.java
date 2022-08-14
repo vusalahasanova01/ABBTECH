@@ -1,7 +1,6 @@
 package taskSeven.test;
 
 import org.junit.jupiter.api.Test;
-import taskSeven.abstracts.Human;
 import taskSeven.enums.DayOfWeek;
 import taskSeven.nonAbstarcts.Woman;
 
