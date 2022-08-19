@@ -1,9 +1,11 @@
 package taskEight.abstracts;
 
+import taskEight.enums.DayOfWeek;
 import taskEight.nonAbstarcts.Family;
 import taskEight.enums.EnumForFamily;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 
@@ -13,7 +15,7 @@ public abstract class Human {
     private String surname;
     private int year;
     private int iq;
-    private String[][] schedule;
+    private Map<DayOfWeek,String> schedule;
     private Family family;
     private EnumForFamily role = EnumForFamily.NONE;
 
@@ -66,11 +68,11 @@ public abstract class Human {
     }
 
 
-    public String[][] getSchedule() {
+    public Map<DayOfWeek, String> getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(String[][] schedule) {
+    public void setSchedule(Map<DayOfWeek,String>schedule) {
         this.schedule = schedule;
     }
 
@@ -78,7 +80,7 @@ public abstract class Human {
     public Human() {
     }
 
-    public Human(String name, String surname, int year, int iq, Family family, String[][] schedule) {
+    public Human(String name, String surname, int year, int iq, Family family, Map<DayOfWeek,String> schedule) {
         this.name = name;
         this.surname = surname;
         this.year = year;
@@ -92,7 +94,7 @@ public abstract class Human {
         this.year = year;
     }
 
-    public Human(String name, String surname, int year, int iq, String[][] schedule) {
+    public Human(String name, String surname, int year, int iq, Map<DayOfWeek,String> schedule) {
         this.name = name;
         this.surname = surname;
         this.year = year;
@@ -111,31 +113,37 @@ public abstract class Human {
     public abstract void greetPet();
 
     public void describePet() {
-        if (family.getPet().getTrickLevel() > 50) {
-            System.out.printf("I have a %s, he is %d years old, he is  very sly \n", family.getPet().getSpecies(),
-                    family.getPet().getAge());
-        } else {
-            System.out.printf("I have a %s, he is %d years old, he is almost not sly\n ", family.getPet().getSpecies(),
-                    family.getPet().getAge());
+        for (Pet pet : family.getPet()) {
+            if (pet.getTrickLevel() > 50) {
+                System.out.printf("I have a %s, he is %d years old, he is  very sly \n", pet.getSpecies(),
+                        pet.getAge());
+            } else {
+                System.out.printf("I have a %s, he is %d years old, he is almost not sly\n ", pet.getSpecies(),
+                        pet.getAge());
 
+            }
         }
+
     }
 
     public boolean feedPet(boolean timeForFeed) {
+        if(family.getPet().size()== 0) return false;
         Random rnd = new Random();
         int randomTrickLevel = rnd.nextInt();
-        if (!timeForFeed) {
-            if (randomTrickLevel < family.getPet().getTrickLevel()) {
-                System.out.printf("Hm... I will feed Jack's %s \n", family.getPet().getNickname());
-                return true;
+        for (Pet pet : family.getPet()) {
+            if (!timeForFeed) {
+                if (randomTrickLevel < pet.getTrickLevel()) {
+                    System.out.printf("Hm... I will feed Jack's %s \n", pet.getNickname());
+
+                } else {
+                    System.out.println("I think Jack is not hungry.");
+
+                }
             } else {
-                System.out.println("I think Jack is not hungry.");
-                return false;
+                System.out.printf("Hm... I will feed Jack's %s \n", pet.getNickname());
             }
-        } else {
-            System.out.printf("Hm... I will feed Jack's %s \n", family.getPet().getNickname());
-            return true;
         }
+        return true;
     }
 
     @Override
@@ -182,7 +190,7 @@ public abstract class Human {
         if (surname != null) result += ", surname='" + surname + '\'';
         if (year != 0) result += ", year=" + year;
         if (iq != 0) result += ", iq=" + iq;
-        if (schedule != null) result += "schedule" + Arrays.deepToString(schedule) + '}';
+        if (schedule != null) result += "schedule" + schedule + '}';
         return result;
     }
 }

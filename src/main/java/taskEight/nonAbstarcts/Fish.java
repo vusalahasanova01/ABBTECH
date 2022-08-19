@@ -4,13 +4,15 @@ import taskEight.abstracts.Foul;
 import taskEight.abstracts.Pet;
 import taskEight.enums.Species;
 
+import java.util.Set;
+
 public class Fish extends Pet implements Foul {
     public Fish(String nickname) {
         super(nickname);
         this.setSpecies(Species.FISH);
     }
 
-    public Fish(String nickname, int age, int trickLevel, String[] habits) {
+    public Fish(String nickname, int age, int trickLevel, Set<String> habits) {
         super(nickname,age,trickLevel,habits);
         this.setSpecies(Species.FISH);
     }

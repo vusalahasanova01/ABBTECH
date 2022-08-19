@@ -5,21 +5,20 @@ import taskEight.abstracts.HumanCreator;
 import taskEight.abstracts.Pet;
 import taskEight.enums.EnumForFamily;
 
+
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 
-public  class Family implements HumanCreator {
+public class Family implements HumanCreator {
     // fields for family
     private Human mother;
     private Human father;
-    private Human[] children = new Human[0];
-    private Pet pet;
-    private List<String> nameOfWoman;
-    private List<String> nameOfMan;
+    private List<Human> children = new ArrayList<>();
+    private Set<Pet> pet;
+    private final List<String> nameOfWoman;
+    private final List<String> nameOfMan;
+
     // constructors
     public Family() {
     }
@@ -33,7 +32,7 @@ public  class Family implements HumanCreator {
         this.father.setFamily(this);
     }
 
-    public Family(Human mother, Human father, Pet pet, Human... children) {
+    public Family(Human mother, Human father, Set<Pet> pet, List<Human> children) {
         this.mother = mother;
         this.mother.setRole(EnumForFamily.MOTHER);
         this.father = father;
@@ -42,9 +41,9 @@ public  class Family implements HumanCreator {
         this.children = children;
         this.mother.setFamily(this);
         this.father.setFamily(this);
-        for (int i = 0; i < children.length; i++) {
-            this.children[i].setFamily(this);
-            this.children[i].setRole(EnumForFamily.CHILD);
+        for (int i = 0; i < children.size(); i++) {
+            this.children.get(i).setFamily(this);
+            this.children.get(i).setRole(EnumForFamily.CHILD);
         }
 
     }
@@ -58,8 +57,8 @@ public  class Family implements HumanCreator {
     //instance block
     {
         System.out.println("a new object is created" + this.getClass());
-        this.nameOfWoman = Arrays.asList("Sevinc","Sebine","Leyla","Afaq","Zehra","Ayten","Cicek");
-        this.nameOfMan = Arrays.asList("Nicat","Eziz","Ceyhun","Revan","Novruz","Elnur","Kamal");
+        this.nameOfWoman = Arrays.asList("Sevinc", "Sebine", "Leyla", "Afaq", "Zehra", "Ayten", "Cicek");
+        this.nameOfMan = Arrays.asList("Nicat", "Eziz", "Ceyhun", "Revan", "Novruz", "Elnur", "Kamal");
     }
 
 
@@ -71,95 +70,68 @@ public  class Family implements HumanCreator {
         return father;
     }
 
-    public Human[] getChildren() {
+    public List<Human> getChildren() {
         return children;
     }
 
-    public Pet getPet() {
+    public Set<Pet> getPet() {
         return pet;
     }
 
-    public void setPet(Pet pet) {
+    public void setPet(Set<Pet> pet) {
         this.pet = pet;
     }
 
     public boolean addChild(Human child) {
-        int lengthChildren = children.length;
-        Human[] backUpChildren;
-        backUpChildren = children;
-        children = new Human[1 + backUpChildren.length];
-        for (int i = 0; i < backUpChildren.length; i++) {
-            children[i] = backUpChildren[i];
-        }
+        int length = children.size() + 1;
         child.setFamily(this);
         child.setRole(EnumForFamily.CHILD);
-        children[backUpChildren.length] = child;
-
-        return lengthChildren == children.length - 1;
-
+        children.add(child);
+        return length == children.size() - 1;
     }
 
     public boolean deleteChild(int index) {
-        int lengthChildren = children.length;
-        if (index >= 0 && index < children.length) {
-            children[index].setFamily(null);
-            children[index].setRole(EnumForFamily.NONE);
-            Human[] deleteChildren = new Human[children.length - 1];
-            for (int i = 0; i < children.length - 1; i++) {
-                if (i >= index) {
-                    deleteChildren[i] = children[i + 1];
-                } else {
-                    deleteChildren[i] = children[i];
-                }
-            }
-            children = deleteChildren;
-
-        }
-        return lengthChildren == children.length + 1;
+        int length = children.size();
+        children.remove(index);
+        children.get(index).setFamily(null);
+        children.get(index).setRole(EnumForFamily.NONE);
+        return length == children.size() + 1;
     }
 
     public boolean deleteChild(Human o) {
-        int lengthChildren = children.length;
-        if (o != null) {
-            Human[] deleteChildren = new Human[children.length - 1];
-            for (int i = 0; i < children.length; i++) {
-                if (children[i].equals(o)) {
-                    children[i].setFamily(null);
-                    children[i].setRole(EnumForFamily.NONE);
-                    System.arraycopy(children, 0, deleteChildren, 0, i);
-                    System.arraycopy(children, i + 1, deleteChildren, i, deleteChildren.length - i);
-                }
-            }
-            children = deleteChildren;
-        }
-        return lengthChildren == children.length + 1;
+        int length = children.size();
+        int index = children.indexOf(o);
+        children.get(index).setFamily(null);
+        children.get(index).setRole(EnumForFamily.NONE);
+        children.remove(o);
+        return length == children.size() - 1;
     }
 
     // i write count family this method.Because there are father, mother and numbers of children in the family.
     public int countFamily() {
-        return children.length + 2;
+        return children.size() + 2;
     }
+
     @Override
     public Human bornChild() {
-        Random rnd =  new Random();
+        Random rnd = new Random();
         Human createdChild;
         boolean gender = rnd.nextBoolean();
         //if gender is true, gender = woman, else gender = man
-        if(gender){
+        if (gender) {
             int selectName = rnd.nextInt(nameOfWoman.size());
-            createdChild= new Woman(nameOfWoman.get(selectName),
+            createdChild = new Woman(nameOfWoman.get(selectName),
                     father.getSurname(),
                     LocalDateTime.now().getYear());
 
-        }
-        else{
+        } else {
             int selectName = rnd.nextInt(nameOfMan.size());
-            createdChild= new Woman(nameOfMan.get(selectName),
+            createdChild = new Woman(nameOfMan.get(selectName),
                     father.getSurname(),
                     LocalDateTime.now().getYear());
 
         }
-        createdChild.setIq((father.getIq()+mother.getIq())/2);
+        createdChild.setIq((father.getIq() + mother.getIq()) / 2);
         createdChild.setRole(EnumForFamily.CHILD);
         createdChild.setFamily(this);
         addChild(createdChild);
@@ -173,15 +145,14 @@ public  class Family implements HumanCreator {
         Family family = (Family) o;
         return mother.equals(family.mother)
                 && father.equals(family.father)
-                && Arrays.equals(children, family.children)
+                && children.equals(family.children)
                 && pet.equals(family.pet);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(mother, father, pet);
-        result = 31 * result + Arrays.hashCode(children);
-        return result;
+        return Objects.hash(mother, father, pet, children);
+
     }
 
     @Override
@@ -193,11 +164,10 @@ public  class Family implements HumanCreator {
     @Override
     public String toString() {
         String result = "Family{" + "mother=" + mother + ", father=" + father;
-        if (children != null) result += ", children=" + Arrays.toString(children);
+        if (children != null) result += ", children=" + children;
         if (pet != null) result += ", pet=" + pet + '}';
         return result;
     }
-
 
 
 }

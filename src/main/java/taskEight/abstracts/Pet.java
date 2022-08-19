@@ -4,6 +4,7 @@ import taskEight.enums.Species;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Set;
 
 public abstract class Pet {
     // fields for pet
@@ -11,7 +12,7 @@ public abstract class Pet {
     private String nickname;
     private int age;
     private int trickLevel;
-    private String[] habits;
+    private Set<String> habits;
 
     public Species getSpecies() {
         return species;
@@ -45,11 +46,11 @@ public abstract class Pet {
         this.trickLevel = trickLevel;
     }
 
-    public String[] getHabits() {
+    public Set<String> getHabits() {
         return habits;
     }
 
-    public void setHabits(String[] habits) {
+    public void setHabits(Set<String> habits) {
         this.habits = habits;
     }
 
@@ -61,7 +62,7 @@ public abstract class Pet {
         this.nickname = nickname;
     }
 
-    public Pet(String nickname, int age, int trickLevel, String[] habits) {
+    public Pet(String nickname, int age, int trickLevel,Set<String> habits) {
         this.nickname = nickname;
         this.age = age;
         this.trickLevel = trickLevel;
@@ -92,14 +93,13 @@ public abstract class Pet {
                 && trickLevel == pet.trickLevel
                 && Objects.equals(species, pet.species)
                 && Objects.equals(nickname, pet.nickname)
-                && Arrays.equals(habits, pet.habits);
+                && Objects.equals(habits, pet.habits);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(species, nickname, age, trickLevel);
-        result = 31 * result + Arrays.hashCode(habits);
-        return result;
+
+        return Objects.hash(species, nickname, age, trickLevel, habits);
     }
 
     @Override
@@ -123,7 +123,7 @@ public abstract class Pet {
         if (nickname != null) result += ", nickname='" + nickname + '\'';
         if (age != 0) result += ", age=" + age ;
         if (trickLevel != 0) result += ", trickLevel=" + trickLevel;
-        if (habits != null) result += ", habits=" + Arrays.toString(habits) +
+        if (habits != null) result += ", habits=" +habits +
                 '}';
         return result;
 

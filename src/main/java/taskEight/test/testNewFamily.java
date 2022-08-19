@@ -9,22 +9,23 @@ import taskEight.nonAbstarcts.Man;
 import taskEight.abstracts.Human;
 import taskEight.nonAbstarcts.Woman;
 
+import java.util.*;
+
 public class testNewFamily {
     @Test
     public void testBornChild(){
-        Woman mother = new Woman("Aypara", "Qafarova", 1977, 70, new String[][]
-                {{DayOfWeek.MONDAY.name(),
-                        "Reading book"},
-                        {"Sunday", "Watching film"}});
-        Man father = new Man("Elvin", "Qafarov", 1971, 70, new String[][]
-                {{DayOfWeek.MONDAY.name(), "Reading book"},
-                        {DayOfWeek.SUNDAY.name(), "Watching film"}});
+        Woman mother = new Woman("Aypara", "Qafarova", 1977, 70,
+                Map.of(DayOfWeek.MONDAY,"Reading book",DayOfWeek.SUNDAY,"Watching film"));
+
+
+        Man father = new Man("Elvin", "Qafarov", 1971, 70,
+                Map.of(DayOfWeek.MONDAY,"Reading book",DayOfWeek.SUNDAY,"Watching film"));
         Woman zohre1 = new Woman("Zohra", "Qafarova", 2001, 90,
-                new String[][]{{DayOfWeek.SUNDAY.name(), "Reading book"}, {DayOfWeek.SUNDAY.name(),
-                        "Watching film"}});
-        Dog dog = new Dog("zevs", 5, 50, new String[]{"eating",
-                "playing"});
-        Family family1 = new Family(mother, father, dog, zohre1);
+                Map.of(DayOfWeek.SUNDAY,"Reading book",DayOfWeek.SUNDAY,"Watching film"));
+
+        Dog dog = new Dog("zevs", 5, 50, new HashSet<>(Arrays.asList("eating",
+                "playing")));
+        Family family1 = new Family(mother, father, new HashSet<>(List.of(dog)),List.of(zohre1));
         Human child = family1.bornChild();
         Assertions.assertNotNull(child);
     }

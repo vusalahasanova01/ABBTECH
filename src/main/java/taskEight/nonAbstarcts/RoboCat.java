@@ -4,12 +4,15 @@ import taskEight.abstracts.Foul;
 import taskEight.abstracts.Pet;
 import taskEight.enums.Species;
 
+import java.util.Map;
+import java.util.Set;
+
 public class RoboCat extends Pet implements Foul {
     public RoboCat(String nickname) {
         super(nickname);
         this.setSpecies(Species.ROBOCAT);
     }
-    public RoboCat(String nickname, int age, int trickLevel, String[] habits) {
+    public RoboCat(String nickname, int age, int trickLevel, Set<String> habits) {
         super(nickname,age,trickLevel,habits);
         this.setSpecies(Species.ROBOCAT);
     }

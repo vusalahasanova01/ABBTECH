@@ -1,5 +1,5 @@
 package taskEight.abstracts;
 
-public interface HumanCreator {
-    public Human bornChild();
+ public interface HumanCreator {
+     Human bornChild();
 }
