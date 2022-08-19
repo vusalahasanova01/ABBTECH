@@ -9,15 +9,6 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestHuman {
-    @Test
-    public void testToString() {
-       Woman vusala = new Woman("Vusala", "Qafarova", 2001, 100,
-               Map.of(DayOfWeek.MONDAY,"Reading book",DayOfWeek.SUNDAY,"Watching film"));
-
-        String expected = "Human{name='Vusala', surname='Qafarova', year=2001," +
-                " iq=100schedule[[MONDAY, Reading book], [SUNDAY, Watching film]]}";
-        assertEquals(expected, vusala.toString());
-    }
 
     @Test
     public void testEqualsHuman() {

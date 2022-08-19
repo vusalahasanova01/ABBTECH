@@ -91,20 +91,30 @@ public class Family implements HumanCreator {
     }
 
     public boolean deleteChild(int index) {
-        int length = children.size();
-        children.remove(index);
-        children.get(index).setFamily(null);
-        children.get(index).setRole(EnumForFamily.NONE);
-        return length == children.size() + 1;
+        if(index < 0 || index >= children.size()){
+            return false;
+        }
+        else {
+            int length = children.size();
+            children.get(index).setFamily(null);
+            children.get(index).setRole(EnumForFamily.NONE);
+            children.remove(index);
+            return length == children.size() + 1;
+        }
     }
 
     public boolean deleteChild(Human o) {
         int length = children.size();
         int index = children.indexOf(o);
-        children.get(index).setFamily(null);
-        children.get(index).setRole(EnumForFamily.NONE);
-        children.remove(o);
-        return length == children.size() - 1;
+        if(index == -1 ){
+            return false;
+        }
+        else {
+            children.get(index).setFamily(null);
+            children.get(index).setRole(EnumForFamily.NONE);
+            children.remove(o);
+            return length == children.size() - 1;
+        }
     }
 
     // i write count family this method.Because there are father, mother and numbers of children in the family.

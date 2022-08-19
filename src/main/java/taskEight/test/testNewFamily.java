@@ -21,11 +21,10 @@ public class testNewFamily {
         Man father = new Man("Elvin", "Qafarov", 1971, 70,
                 Map.of(DayOfWeek.MONDAY,"Reading book",DayOfWeek.SUNDAY,"Watching film"));
         Woman zohre1 = new Woman("Zohra", "Qafarova", 2001, 90,
-                Map.of(DayOfWeek.SUNDAY,"Reading book",DayOfWeek.SUNDAY,"Watching film"));
-
+                Map.of(DayOfWeek.MONDAY,"Reading book",DayOfWeek.SUNDAY,"Watching film"));
         Dog dog = new Dog("zevs", 5, 50, new HashSet<>(Arrays.asList("eating",
                 "playing")));
-        Family family1 = new Family(mother, father, new HashSet<>(List.of(dog)),List.of(zohre1));
+        Family family1 = new Family(mother, father, new HashSet<>(List.of(dog)),new ArrayList<>(List.of(zohre1)));
         Human child = family1.bornChild();
         Assertions.assertNotNull(child);
     }

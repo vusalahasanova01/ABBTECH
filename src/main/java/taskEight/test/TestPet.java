@@ -28,15 +28,7 @@ public class TestPet {
         assertNotEquals(dog, dog1);
     }
 
-    @Test
-    public void testToString() {
-        Dog dog = new Dog("zevs", 5, 50,new HashSet<>(Arrays.asList("eating",
-                "playing")));
-
-        String expected = "DOG{animal can't flyanimal doesn't have furnumber of legs 4, nickname='zevs'," +
-                " age=5, trickLevel=50, habits=[eating, playing]}";
-        assertEquals(expected, dog.toString());
-    }
+  
 
     @Test
     public void testHashcodeFalse() {
