@@ -28,7 +28,7 @@ public class TestPet {
         assertNotEquals(dog, dog1);
     }
 
-  
+
 
     @Test
     public void testHashcodeFalse() {
