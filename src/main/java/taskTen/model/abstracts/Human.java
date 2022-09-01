@@ -4,6 +4,10 @@ import taskTen.model.enums.DayOfWeek;
 import taskTen.model.enums.EnumForFamily;
 import taskTen.model.nonAbstarcts.Family;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
@@ -50,12 +54,26 @@ public abstract class Human {
         this.surname = surname;
     }
 
-    public long getYear() {
+
+    public long getBirthDate() {
         return birthDate;
     }
+    public Date getBirthDateWithDate(){
+        return new Date(birthDate);
+    }
 
-    public void setYear(int birthDate) {
-        this.birthDate = birthDate;
+    public int getBirthDateWithYear(){
+        return 1900 + getBirthDateWithDate().getYear();
+    }
+
+    public void setBirthDate(String birthDate)  {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.birthDate = dateFormat.parse(birthDate).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getIq() {
@@ -79,24 +97,50 @@ public abstract class Human {
     public Human() {
     }
 
-    public Human(String name, String surname,long birthDate, int iq, Family family, Map<DayOfWeek,String> schedule) {
+    public Human(String name, String surname,String birthDate, int iq, Family family, Map<DayOfWeek,String> schedule) {
         this.name = name;
         this.surname = surname;
-        this.birthDate =birthDate;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         this.family = family;
         this.iq = iq;
         this.schedule = schedule;
     }
-    public Human(String name, String surname, long birthDate) {
+    public Human(String name, String surname, String birthDate)  {
         this.name = name;
         this.surname = surname;
-        this.birthDate = birthDate;
+       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    public Human(String name, String surname,int iq, String birthDate)  {
+        this.name = name;
+        this.surname = surname;
+        this.iq = iq;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    public Human(String name, String surname, long birthDate, int iq, Map<DayOfWeek,String> schedule) {
+    public Human(String name, String surname, String birthDate, int iq, Map<DayOfWeek,String> schedule) {
         this.name = name;
         this.surname = surname;
-        this.birthDate = birthDate;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         this.iq = iq;
         this.schedule = schedule;
     }
@@ -123,6 +167,10 @@ public abstract class Human {
             }
         }
 
+    }
+    public String describeAge(){
+       return String.format("Year: %d,Month: %d, Day: %d",getBirthDateWithYear(),
+               getBirthDateWithDate().getMonth(),getBirthDateWithDate().getDay());
     }
 
     public boolean feedPet(boolean timeForFeed) {
@@ -183,11 +231,16 @@ public abstract class Human {
     public String toString() {
         //"Human{name='Vusala', surname='Qafarova', year=2001," +
         //                        " iq=100schedule[[MONDAY, Reading book], [SUNDAY, Watching film]]}";
+
+
         String result = "Human{";
         if (name == null) result += "}";
         else result += "name='" + name + '\'';
         if (surname != null) result += ", surname='" + surname + '\'';
-        if (birthDate!= 0) result += ", year=" + birthDate;
+        if (birthDate!= 0)
+        {  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            result += ", birthdate=" + simpleDateFormat.format(new Date(birthDate));
+        }
         if (iq != 0) result += ", iq=" + iq;
         if (schedule != null) result += "schedule" + schedule + '}';
         return result;

@@ -14,13 +14,13 @@ import java.util.*;
 public class testNewFamily {
     @Test
     public void testBornChild(){
-        Woman mother = new Woman("Aypara", "Qafarova", 1977, 70,
+        Woman mother = new Woman("Aypara", "Qafarova", "01.05.1977", 70,
                 Map.of(DayOfWeek.MONDAY,"Reading book", DayOfWeek.SUNDAY,"Watching film"));
 
 
-        Man father = new Man("Elvin", "Qafarov", 1971, 70,
+        Man father = new Man("Elvin", "Qafarov", "01.05.1971", 70,
                 Map.of(DayOfWeek.MONDAY,"Reading book", DayOfWeek.SUNDAY,"Watching film"));
-        Woman zohre1 = new Woman("Zohra", "Qafarova", 2001, 90,
+        Woman zohre1 = new Woman("Zohra", "Qafarova", "17.12.2001", 90,
                 Map.of(DayOfWeek.MONDAY,"Reading book", DayOfWeek.SUNDAY,"Watching film"));
         Dog dog = new Dog("zevs", 5, 50, new HashSet<>(Arrays.asList("eating",
                 "playing")));

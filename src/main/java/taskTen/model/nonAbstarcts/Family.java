@@ -5,6 +5,7 @@ import taskTen.model.abstracts.HumanCreator;
 import taskTen.model.abstracts.Pet;
 import taskTen.model.enums.EnumForFamily;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -137,13 +138,17 @@ public class Family implements HumanCreator {
             int selectName = rnd.nextInt(nameOfWoman.size());
             createdChild = new Woman(nameOfWoman.get(selectName),
                     father.getSurname(),
-                    LocalDateTime.now().getYear());
+                    String.format("%d,%d,%d", LocalDate.now().getDayOfMonth(),
+                            LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+
 
         } else {
             int selectName = rnd.nextInt(nameOfMan.size());
             createdChild = new Woman(nameOfMan.get(selectName),
                     father.getSurname(),
-                    LocalDateTime.now().getYear());
+                    String.format("%d,%d,%d", LocalDate.now().getDayOfMonth(),
+                            LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+
 
         }
         createdChild.setIq((father.getIq() + mother.getIq()) / 2);
@@ -162,13 +167,17 @@ public class Family implements HumanCreator {
             String  selectName = womanName ;
             createdChild = new Woman(womanName,
                     father.getSurname(),
-                    LocalDateTime.now().getYear());
+                    String.format("%d,%d,%d", LocalDate.now().getDayOfMonth(),
+                            LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+
 
         } else {
           String selectName = manName;
             createdChild = new Woman(selectName,
                     father.getSurname(),
-                    LocalDateTime.now().getYear());
+                    String.format("%d,%d,%d", LocalDate.now().getDayOfMonth(),
+                            LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+
 
         }
         createdChild.setIq((father.getIq() + mother.getIq()) / 2);

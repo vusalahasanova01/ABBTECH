@@ -87,7 +87,7 @@ public class FamilyService {
             Family f = collectionFamilyDao.getAllFamilies().get(i);
             List<Human> deletedChildren = new ArrayList<>();
             for (int j = 0; j < f.getChildren().size(); j++) {
-                if (LocalDateTime.now().getYear() - f.getChildren().get(j).getYear() > specifiedAge) {
+                if (LocalDateTime.now().getYear() - f.getChildren().get(j).getBirthDateWithYear() > specifiedAge) {
                     deletedChildren.add(f.getChildren().get(j));
                 }
             }

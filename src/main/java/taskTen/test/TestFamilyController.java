@@ -28,11 +28,11 @@ public class TestFamilyController {
     @BeforeEach
     public void testAll(){
         familyControllerMock = Mockito.mock(FamilyController.class);
-        mother  = new Woman("Aypara","Qafarova",1977);
-        father = new Man("Elvin","Qafarova",1970);
+        mother  = new Woman("Aypara","Qafarova","01/05/1977");
+        father = new Man("Elvin","Qafarova","01/05/1971");
         family1 = new Family(mother,father);
-        mother1  = new Woman("Aypara1","Qafarova1",1977);
-        father1 = new Man("Elvin1","Qafarova1",1970);
+        mother1  = new Woman("Aypara1","Qafarova1","01/05/1977");
+        father1 = new Man("Elvin1","Qafarova1","01/05/1971");
         family2 = new Family(mother1,father1);
         dog  = new Dog("Toplan");
 
@@ -56,7 +56,7 @@ public class TestFamilyController {
 
     @Test
     public void testCountFamiliesWithMemberNumber(){
-        Woman child1 = new Woman("Zohra","Qafarova",2001);
+        Woman child1 = new Woman("Zohra","Qafarova","17/12/2001");
         family1.addChild(child1);
         familyController.addFamily(family1);
         familyController.addFamily(family2);
@@ -65,9 +65,9 @@ public class TestFamilyController {
 
     @Test
     public void testGetFamiliesBiggerThan(){
-        Woman child1 = new Woman("Zohra","Qafarova",2001);
-        Woman child2 = new Woman("Vusala","Qafarova",2001);
-        Man child3 = new Man("Elvin","Qafarli",2000);
+        Woman child1 = new Woman("Zohra","Qafarova","17/12/2001");
+        Woman child2 = new Woman("Vusala","Qafarova","17/12/2001");
+        Man child3 = new Man("Elvin","Qafarli","17/12/2000");
         family1.addChild(child2);
         family1.addChild(child1);
         family2.addChild(child3);
@@ -81,9 +81,9 @@ public class TestFamilyController {
 
     @Test
     public void TestGetFamiliesLessThan(){
-        Woman child1 = new Woman("Zohra","Qafarova",2001);
-        Woman child2 = new Woman("Vusala","Qafarova",2001);
-        Man child3 = new Man("Elvin","Qafarli",2000);
+        Woman child1 = new Woman("Zohra","Qafarova","17/12/2001");
+        Woman child2 = new Woman("Vusala","Qafarova","17/12/2001");
+        Man child3 = new Man("Elvin","Qafarli","17/12/2000");
         family1.addChild(child2);
         family1.addChild(child1);
         family2.addChild(child3);
@@ -108,7 +108,7 @@ public class TestFamilyController {
     @Test
     public void testAdoptChild(){
         Family family3 = new Family(mother,father);
-        Woman child1 = new Woman("Zohra","Qafarova",2001);
+        Woman child1 = new Woman("Zohra","Qafarova","17/12/2001");
         family3.addChild(child1);
         familyController.addFamily(family1);
         Assertions.assertEquals(family3, familyController.adoptChild(family1,child1));
@@ -127,9 +127,9 @@ public class TestFamilyController {
     @Test
     public void testDeleteAllChildrenOlderThen(){
 
-        Woman child1 = new Woman("Zohra","Qafarova",2001);
-        Woman child2 = new Woman("Vusala","Qafarova",2018);
-        Man child3 = new Man("Elvin","Qafarli",2000);
+        Woman child1 = new Woman("Zohra","Qafarova","17/12/2001");
+        Woman child2 = new Woman("Vusala","Qafarova","17/12/2018");
+        Man child3 = new Man("Elvin","Qafarli","17/12/2000");
         family1.addChild(child2);
         family1.addChild(child1);
         family1.addChild(child3);
@@ -142,9 +142,9 @@ public class TestFamilyController {
 
     @Test
     public void testCount(){
-        Woman child1 = new Woman("Zohra","Qafarova",2001);
-        Woman child2 = new Woman("Vusala","Qafarova",2018);
-        Man child3 = new Man("Elvin","Qafarli",2000);
+        Woman child1 = new Woman("Zohra","Qafarova","17/12/2001");
+        Woman child2 = new Woman("Vusala","Qafarova","17/12/2018");
+        Man child3 = new Man("Elvin","Qafarli","17/12/2000");
         family1.addChild(child2);
         family1.addChild(child1);
         family1.addChild(child3);
@@ -156,9 +156,9 @@ public class TestFamilyController {
 
     @Test
     public void testDeleteFamilyByIndex(){
-        Woman child1 = new Woman("Zohra","Qafarova",2001);
-        Woman child2 = new Woman("Vusala","Qafarova",2018);
-        Man child3 = new Man("Elvin","Qafarli",2000);
+        Woman child1 = new Woman("Zohra","Qafarova","17/12/2001");
+        Woman child2 = new Woman("Vusala","Qafarova","17/12/2018");
+        Man child3 = new Man("Elvin","Qafarli","17/12/2000");
         family1.addChild(child2);
         family1.addChild(child1);
         family1.addChild(child3);
@@ -172,9 +172,9 @@ public class TestFamilyController {
 
     @Test
     public void testDeleteFamilyByObject(){
-        Woman child1 = new Woman("Zohra","Qafarova",2001);
-        Woman child2 = new Woman("Vusala","Qafarova",2018);
-        Man child3 = new Man("Elvin","Qafarli",2000);
+        Woman child1 = new Woman("Zohra","Qafarova","17/12/2001");
+        Woman child2 = new Woman("Vusala","Qafarova","17/12/2018");
+        Man child3 = new Man("Elvin","Qafarli","17/12/2000");
         family1.addChild(child2);
         family1.addChild(child1);
         family1.addChild(child3);
@@ -187,9 +187,9 @@ public class TestFamilyController {
     }
     @Test
     public void testGetFamilyById(){
-        Woman child1 = new Woman("Zohra","Qafarova",2001);
-        Woman child2 = new Woman("Vusala","Qafarova",2018);
-        Man child3 = new Man("Elvin","Qafarli",2000);
+        Woman child1 = new Woman("Zohra","Qafarova","17/12/2001");
+        Woman child2 = new Woman("Vusala","Qafarova","17/12/2018");
+        Man child3 = new Man("Elvin","Qafarli","17/12/2000");
         family1.addChild(child2);
         family1.addChild(child1);
         family1.addChild(child3);
