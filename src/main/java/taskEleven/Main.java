@@ -3,7 +3,6 @@ package taskEleven;
 
 import taskEleven.model.enums.DayOfWeek;
 import taskEleven.model.nonAbstarcts.*;
-import taskEleven.taskTen.model.nonAbstarcts.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
