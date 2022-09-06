@@ -19,7 +19,9 @@ public class FamilyService {
     }
 
     public void displayAllFamilies() {
-        System.out.println(getAllFamilies());
+       for(Family f:collectionFamilyDao.getAllFamilies()) {
+           System.out.println(f);
+       }
     }
 
 

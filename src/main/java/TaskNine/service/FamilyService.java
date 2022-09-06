@@ -22,7 +22,10 @@ public class FamilyService {
     }
 
     public void displayAllFamilies() {
-        System.out.println(getAllFamilies());
+
+        for(Family f: getAllFamilies()){
+            System.out.println(f);
+        }
     }
 
 
