@@ -23,7 +23,7 @@ public class FamilyService {
 
     public void displayAllFamilies() {
 
-        for(Family f: getAllFamilies()){
+        for(Family f: collectionFamilyDao.getAllFamilies()){
             System.out.println(f);
         }
     }
