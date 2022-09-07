@@ -240,7 +240,7 @@ public abstract class Human {
         {  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
             result += ", birthdate=" + simpleDateFormat.format(new Date(birthDate));
         }
-        if (iq != 0) result += ", iq=" + iq;
+        if (iq != 0) result += ", iq=" + iq + ", ";
         if (schedule != null) result += "schedule" + schedule + '}';
         return result;
     }

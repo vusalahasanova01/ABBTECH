@@ -21,8 +21,7 @@ public class FamilyService {
     }
 
     public void displayAllFamilies() {
-
-        getAllFamilies().stream().forEach(x-> System.out.println(x));
+        collectionFamilyDao.getAllFamilies().forEach(x-> System.out.println(x.prettyFormat()));
     }
 
 

@@ -88,18 +88,18 @@ public class Family implements HumanCreator {
         children.add(child);
         return length == children.size() - 1;
     }
-    public boolean addPet(Pet addedPet){
+
+    public boolean addPet(Pet addedPet) {
         int length = pet.size();
         pet.add(addedPet);
-        return length == pet.size() -1;
+        return length == pet.size() - 1;
 
     }
 
     public boolean deleteChild(int index) {
-        if(index < 0 || index >= children.size()){
+        if (index < 0 || index >= children.size()) {
             return false;
-        }
-        else {
+        } else {
             int length = children.size();
             children.get(index).setFamily(null);
             children.get(index).setRole(EnumForFamily.NONE);
@@ -111,10 +111,9 @@ public class Family implements HumanCreator {
     public boolean deleteChild(Human o) {
         int length = children.size();
         int index = children.indexOf(o);
-        if(index == -1 ){
+        if (index == -1) {
             return false;
-        }
-        else {
+        } else {
             children.get(index).setFamily(null);
             children.get(index).setRole(EnumForFamily.NONE);
             children.remove(o);
@@ -138,7 +137,7 @@ public class Family implements HumanCreator {
             createdChild = new Woman(nameOfWoman.get(selectName),
                     father.getSurname(),
                     String.format("%d,%d,%d", LocalDate.now().getDayOfMonth(),
-                            LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+                            LocalDate.now().getMonthValue(), LocalDate.now().getYear()));
 
 
         } else {
@@ -146,7 +145,7 @@ public class Family implements HumanCreator {
             createdChild = new Woman(nameOfMan.get(selectName),
                     father.getSurname(),
                     String.format("%d,%d,%d", LocalDate.now().getDayOfMonth(),
-                            LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+                            LocalDate.now().getMonthValue(), LocalDate.now().getYear()));
 
 
         }
@@ -156,6 +155,7 @@ public class Family implements HumanCreator {
         addChild(createdChild);
         return createdChild;
     }
+
     @Override
     public Human bornChild(String womanName, String manName) {
         Random rnd = new Random();
@@ -163,19 +163,19 @@ public class Family implements HumanCreator {
         boolean gender = rnd.nextBoolean();
         //if gender is true, gender = woman, else gender = man
         if (gender) {
-            String  selectName = womanName ;
+            String selectName = womanName;
             createdChild = new Woman(womanName,
                     father.getSurname(),
                     String.format("%d,%d,%d", LocalDate.now().getDayOfMonth(),
-                            LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+                            LocalDate.now().getMonthValue(), LocalDate.now().getYear()));
 
 
         } else {
-          String selectName = manName;
+            String selectName = manName;
             createdChild = new Woman(selectName,
                     father.getSurname(),
                     String.format("%d,%d,%d", LocalDate.now().getDayOfMonth(),
-                            LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+                            LocalDate.now().getMonthValue(), LocalDate.now().getYear()));
 
 
         }
@@ -185,9 +185,46 @@ public class Family implements HumanCreator {
         addChild(createdChild);
         return createdChild;
     }
-    public String prettyFormat(){
-        return null;
 
+    public String prettyFormat() {
+        StringBuilder format = new StringBuilder();
+        format.append("family:\n");
+        format.append("\t mother: ").append(mother.toString().substring(4));
+        format.append("\t father: ").append(father.toString().substring(5));
+        if (children.size() != 0) {
+            format.append("\t children:\n");
+            for (Human child : children) {
+                String gender = child.getClass().toString();
+                if (gender.contains("Woman")) {
+                    format.append("\t\tgirl: ");
+                    format.append(child.toString().substring(4));
+                } else {
+                    format.append("\t\tboy: ");
+                    format.append(child.toString().substring(4));
+                }
+
+            }
+
+        }
+            if (pet.size() != 0) {
+                format.append("\t pets: [");
+                for (Pet pet : pet) {
+                    format.append("{");
+                    format.append("species=").append(pet.getSpecies().toString()).append(", ");
+                    format.append("nickname=").append(pet.getNickname()).append(", ");
+                    format.append("age=").append(pet.getAge()).append(", ");
+                    format.append("trickLevel=").append(pet.getTrickLevel()).append(", ");
+                    format.append("habits=").append(pet.getHabits());
+                    format.append("}, ");
+                }
+                format.delete(format.length() - 2, format.length());
+                format.append("]");
+
+            }
+            format.append("\n");
+
+
+        return format.toString();
     }
 
     @Override
