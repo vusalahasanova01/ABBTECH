@@ -189,7 +189,7 @@ public class Family implements HumanCreator {
     public String prettyFormat() {
         StringBuilder format = new StringBuilder();
         format.append("family:\n");
-        format.append("\t mother: ").append(mother.toString().substring(4));
+        format.append("\t mother: ").append(mother.toString().substring(5));
         format.append("\t father: ").append(father.toString().substring(5));
         if (children.size() != 0) {
             format.append("\t children:\n");
