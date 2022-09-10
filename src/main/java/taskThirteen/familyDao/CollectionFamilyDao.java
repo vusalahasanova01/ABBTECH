@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CollectionFamilyDao implements FamilyDao {
-    private final List <Family> familyList = new ArrayList<>();
+    FileFamilyDaoRepo fileFamilyDaoRepo = new FileFamilyDaoRepo();
+    private static List<Family> familyList = new ArrayList<>();
+
 
     @Override
     public List<Family> getAllFamilies() {
@@ -15,11 +17,10 @@ public class CollectionFamilyDao implements FamilyDao {
 
     @Override
     public Family getFamilyByIndex(int familyIndex) {
-        try{
+        try {
             return familyList.get(familyIndex);
-        }
-        catch(IndexOutOfBoundsException e){
-            return  null;
+        } catch (IndexOutOfBoundsException e) {
+            return null;
         }
     }
 
@@ -28,8 +29,7 @@ public class CollectionFamilyDao implements FamilyDao {
         try {
             familyList.remove(index);
             return true;
-        }
-        catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             return false;
         }
     }
@@ -43,11 +43,16 @@ public class CollectionFamilyDao implements FamilyDao {
 
     @Override
     public void saveFamily(Family family) {
-        if(!familyList.contains(family)){
+        if (!familyList.contains(family)) {
             familyList.add(family);
         }
+    }
 
-
+    public void loadAllData() {
+        List<Family> families = fileFamilyDaoRepo.loadData();
+        if (families != null) {
+            familyList = families;
+        }
     }
 
 }

@@ -1,8 +1,8 @@
 package taskThirteen.model.nonAbstarcts;
 
 import taskThirteen.model.abstracts.Foul;
-import taskThirteen.model.enums.Species;
 import taskThirteen.model.abstracts.Pet;
+import taskThirteen.model.enums.Species;
 
 import java.util.Set;
 

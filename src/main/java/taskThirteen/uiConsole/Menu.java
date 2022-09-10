@@ -1,17 +1,24 @@
 package taskThirteen.uiConsole;
 
+import TaskNine.familyDao.FamilyDao;
 import taskThirteen.controller.FamilyController;
+import taskThirteen.familyDao.CollectionFamilyDao;
+import taskThirteen.familyDao.FileFamilyDaoRepo;
 import taskThirteen.model.enums.DayOfWeek;
 import taskThirteen.model.nonAbstarcts.Family;
 import taskThirteen.model.nonAbstarcts.Man;
 import taskThirteen.model.nonAbstarcts.Woman;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
+    private final FamilyController familyController = new FamilyController();
+    private final FileFamilyDaoRepo fileFamilyDaoRepo = new FileFamilyDaoRepo();
+    private final CollectionFamilyDao collectionFamilyDao = new CollectionFamilyDao();
+
     public void showMenu() {
-        FamilyController familyController = new FamilyController();
         UtilClass util = new UtilClass();
         MenuUtil menuUtil = new MenuUtil();
         boolean result = true;
@@ -22,23 +29,50 @@ public class Menu {
             String menuNumber = sc.nextLine();
             switch (menuNumber) {
                 case "1":
+                   collectionFamilyDao.loadAllData();
+                    /*
                     Woman zohre1 = new Woman("Zohra", "Qafarova", "17/12/2001", 90,
                             Map.of(DayOfWeek.MONDAY, "Reading book", DayOfWeek.SUNDAY, "Watching film"));
                     Man elvin = new Man("Elvin", "Qafarov", "01/05/1971", 70,
                             Map.of(DayOfWeek.FRIDAY, "Reading book", DayOfWeek.SUNDAY, "Watching film"));
                     familyController.createNewFamily(zohre1, elvin);
-                    System.err.println("Filled data completed!");
+
+
+                    Woman zohre2 = new Woman("Zohra", "Qafarova", "17/12/2001", 90,
+                            Map.of(DayOfWeek.MONDAY, "Reading book", DayOfWeek.SUNDAY, "Watching film"));
+                    Man elvin1 = new Man("Elvin", "Qafarov", "01/05/1971", 70, Map.of(DayOfWeek.FRIDAY, "Reading book", DayOfWeek.SUNDAY, "Watching film"));
+                    familyController.createNewFamily(zohre2, elvin1);
+                    familyController.getFamilyById(1).addChild(new Woman("Revan", "Qafarov", 58, "12/10/2015"));
+                    familyController.getFamilyById(1).bornChild("Sevinc", "Ali");
+                    familyController.getFamilyById(1).addChild(new Man("Nicat", "Qafarov", 45, "01/05/2000"));
+
+
+                    Woman zohre3 = new Woman("Zohra", "Qafarova", "17/12/2001", 90,
+                            Map.of(DayOfWeek.MONDAY, "Reading book", DayOfWeek.SUNDAY, "Watching film"));
+                    Man elvin2 = new Man("Elvin", "Qafarov", "01/05/1971", 70,
+                            Map.of(DayOfWeek.FRIDAY, "Reading book", DayOfWeek.SUNDAY, "Watching film"));
+                    familyController.createNewFamily(zohre3, elvin2);
+                    familyController.getFamilyById(2)
+                            .addChild(new Woman("Revan", "Qafarov", 58, "12/10/2020"));
+                    familyController.getFamilyById(2)
+                            .addChild(new Man("Nicat", "Qafarov", 45, "01/05/2010"));
+
+*/
+                    System.out.println("Filled data completed!");
                     break;
                 case "2":
-                    familyController.displayAllFamilies();
+                    displayFamilies();
                     break;
                 case "3":
                     int specifiedBigNumber = util.callResultInt("Enter the specified number");
-                    System.out.println(familyController.getFamiliesBiggerThan(specifiedBigNumber));
+                    familyController.getFamiliesBiggerThan(specifiedBigNumber).stream()
+                            .forEach(family -> System.out.println(family.prettyFormat()));
                     break;
                 case "4":
                     int specifiedLessNumber = util.callResultInt("Enter the specified number");
-                    System.out.println(familyController.getFamiliesLessThan(specifiedLessNumber));
+
+                    familyController.getFamiliesLessThan(specifiedLessNumber).stream().
+                            forEach(family -> System.out.println(family.prettyFormat()));
                 case "5":
                     int sizeOfFamily = util.callResultInt("Enter the number:");
                     System.out.println(familyController.countFamiliesWithMemberNumber(sizeOfFamily));
@@ -62,7 +96,7 @@ public class Menu {
                     int yearOfBirthdayFather = util.callResultInt("Enter birth year: ");
                     int montOfBirthdayFather = util.callResultInt("Enter birth of month: ");
                     int birthdayFather = util.callResultInt("Enter birthday: ");
-                    int iqOfFather = util.callResultInt("Enter mother's iq ");
+                    int iqOfFather = util.callResultInt("Enter father's iq ");
                     String birthdayOfFather = (birthdayFather)
                             + "/"
                             + montOfBirthdayFather
@@ -74,66 +108,75 @@ public class Menu {
 
                 case "7":
                     int indexDeletedFamily = util.callResultInt("Add index for deleting family: ");
-                    System.out.println(familyController.deleteFamilyByIndex(indexDeletedFamily));
+                    familyController.deleteFamilyByIndex(indexDeletedFamily - 1);
+                    System.out.println("Successfully deleted");
                     break;
 
                 case "8":
-                    boolean result2 = true;
+                    menuUtil.editMenu();
                     String editMenuNumber = util.callResultString("Enter menu number for editing: ");
-                    while (result2) {
-                        switch (editMenuNumber) {
-                            case "1":
-                                System.out.println("Enter family identifier (ID): ");
-                                int idOfFamily = util.callResultInt("Enter family identifier (ID): ");
-                                Family idOfFamilyObj = familyController.getFamilyById(idOfFamily);
-                                String nameOfBoy = util.callResultString("Enter boy's name: ");
-                                String nameOfGirl = util.callResultString("Enter girl's name: ");
-                                System.out.println(familyController.bornChild(idOfFamilyObj, nameOfGirl, nameOfBoy));
-                                break;
-                            case "2":
-                                System.out.println("Select gender of child: ");
-                                menuUtil.selectGender();
-                                String genderNumber = sc.next();
-                                System.out.println("Enter family identifier (ID): ");
-                                int idOfFamily2 = sc.nextInt();
-                                Family idOfFamilyObj2 = familyController.getFamilyById(idOfFamily2);
-                                System.out.println("Enter child's name: ");
-                                String nameOfChild = sc.next();
-                                System.out.println("Enter child's surname: ");
-                                String surnameOfChild = sc.next();
-                                System.out.println("Enter birthday of child: ");
-                                String birthday = sc.next();
-                                System.out.println("Enter iq of child: ");
-                                int iqOfChild = sc.nextInt();
-                                if (genderNumber.equals("1")) {
-                                    System.out.println(familyController.adoptChild(idOfFamilyObj2,
-                                            new Man(nameOfChild, surnameOfChild, iqOfChild, birthday)));
-                                } else {
-                                    System.out.println(familyController.adoptChild(idOfFamilyObj2,
-                                            new Woman(nameOfChild, surnameOfChild, iqOfChild, birthday)));
-                                }
-                                break;
-                            case "3":
-                                result2 = false;
-                                menuUtil.showMenu();
-                                break;
-
-                        }
+                    switch (editMenuNumber) {
+                        case "1":
+                            displayFamilies();
+                            int idOfFamily = util.callResultInt("Enter family identifier (ID): ") - 1;
+                            Family idOfFamilyObj = familyController.getFamilyById(idOfFamily);
+                            String nameOfBoy = util.callResultString("Enter boy's name: ");
+                            String nameOfGirl = util.callResultString("Enter girl's name: ");
+                            familyController.bornChild(idOfFamilyObj, nameOfGirl, nameOfBoy);
+                            break;
+                        case "2":
+                            System.out.println("Select gender of child: ");
+                            menuUtil.selectGender();
+                            String genderNumber = sc.next();
+                            displayFamilies();
+                            int idOfFamily2 = util.callResultInt("Enter family identifier (ID): ") - 1;
+                            Family idOfFamilyObj2 = familyController.getFamilyById(idOfFamily2);
+                            String nameOfChild = util.callResultString("Enter child's name: ");
+                            String surnameOfChild = util.callResultString("Enter child's surname: ");
+                            int birthday = util.callResultInt("Enter birthday of child: ");
+                            int birthMonth = util.callResultInt("Enter birth month of child: ");
+                            int birthYear = util.callResultInt("Enter birth year of child: ");
+                            String birthDate = String.format("%d/%d/%d", birthday, birthMonth, birthYear);
+                            int iqOfChild = util.callResultInt("Enter iq of child: ");
+                            if (genderNumber.equals("1")) {
+                                familyController.adoptChild(idOfFamilyObj2,
+                                        new Man(nameOfChild, surnameOfChild, iqOfChild, birthDate));
+                            } else {
+                                familyController.adoptChild(idOfFamilyObj2,
+                                        new Woman(nameOfChild, surnameOfChild, iqOfChild, birthDate));
+                            }
+                            break;
+                        case "3":
+                            System.out.println("Returned to menu");
+                            break;
+                        default:
+                            System.out.println("Input is invalid");
 
                     }
+                    break;
+
                 case "9":
                     System.out.println("Enter age for removing children: ");
                     int ageLimit = sc.nextInt();
                     familyController.deleteAllChildrenOlderThen(ageLimit);
                     break;
-                case "10":
                 case "exit":
+                    fileFamilyDaoRepo.saveData(familyController.getAllFamilies());
                     System.out.println("Exit from the menu.");
                     result = false;
+                    break;
+                default:
+                    System.out.println("Input is invalid");
 
             }
 
         }
+    }
+
+    public void displayFamilies() {
+        int[] counter = {1};
+        familyController.getAllFamilies().stream()
+                .forEach(family -> System.out.println(counter[0]++ + ". " + family.prettyFormat()));
     }
 
 

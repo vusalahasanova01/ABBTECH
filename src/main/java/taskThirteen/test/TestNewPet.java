@@ -3,10 +3,10 @@ package taskThirteen.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import taskThirteen.model.nonAbstarcts.RoboCat;
 import taskThirteen.model.nonAbstarcts.Dog;
 import taskThirteen.model.nonAbstarcts.DomesticCat;
 import taskThirteen.model.nonAbstarcts.Fish;
+import taskThirteen.model.nonAbstarcts.RoboCat;
 
 public class TestNewPet {
     RoboCat roboCat;

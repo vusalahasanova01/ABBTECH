@@ -4,6 +4,7 @@ import taskThirteen.model.enums.DayOfWeek;
 import taskThirteen.model.enums.EnumForFamily;
 import taskThirteen.model.nonAbstarcts.Family;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 
-public abstract class Human {
+public abstract class Human implements Serializable {
     // fields for human
     private String name;
     private String surname;

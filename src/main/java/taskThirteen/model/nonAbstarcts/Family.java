@@ -1,15 +1,16 @@
 package taskThirteen.model.nonAbstarcts;
 
-import taskThirteen.model.abstracts.Pet;
-import taskThirteen.model.enums.EnumForFamily;
 import taskThirteen.model.abstracts.Human;
 import taskThirteen.model.abstracts.HumanCreator;
+import taskThirteen.model.abstracts.Pet;
+import taskThirteen.model.enums.EnumForFamily;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
 
-public class Family implements HumanCreator {
+public class Family implements HumanCreator, Serializable {
     // fields for family
     private Woman mother;
     private Man father;
@@ -166,7 +167,7 @@ public class Family implements HumanCreator {
             String selectName = womanName;
             createdChild = new Woman(womanName,
                     father.getSurname(),
-                    String.format("%d,%d,%d", LocalDate.now().getDayOfMonth(),
+                    String.format("%d/%d/%d", LocalDate.now().getDayOfMonth(),
                             LocalDate.now().getMonthValue(), LocalDate.now().getYear()));
 
 
@@ -174,7 +175,7 @@ public class Family implements HumanCreator {
             String selectName = manName;
             createdChild = new Woman(selectName,
                     father.getSurname(),
-                    String.format("%d,%d,%d", LocalDate.now().getDayOfMonth(),
+                    String.format("%d/%d/%d", LocalDate.now().getDayOfMonth(),
                             LocalDate.now().getMonthValue(), LocalDate.now().getYear()));
 
 
@@ -189,18 +190,18 @@ public class Family implements HumanCreator {
     public String prettyFormat() {
         StringBuilder format = new StringBuilder();
         format.append("family:\n");
-        format.append("\t mother: ").append(mother.toString().substring(5));
-        format.append("\t father: ").append(father.toString().substring(5));
+        format.append("\t mother: ").append(mother.toString().substring(5)).append('\n');
+        format.append("\t father: ").append(father.toString().substring(5)).append('\n');
         if (children.size() != 0) {
             format.append("\t children:\n");
             for (Human child : children) {
                 String gender = child.getClass().toString();
                 if (gender.contains("Woman")) {
                     format.append("\t\tgirl: ");
-                    format.append(child.toString().substring(4));
+                    format.append(child.toString().substring(5)).append('\n');
                 } else {
                     format.append("\t\tboy: ");
-                    format.append(child.toString().substring(4));
+                    format.append(child.toString().substring(5)).append('\n');
                 }
 
             }

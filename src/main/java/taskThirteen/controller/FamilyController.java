@@ -1,11 +1,13 @@
 package taskThirteen.controller;
 
-import taskThirteen.model.abstracts.Human;
+import taskThirteen.exception.FamilyOverflowException;
 import taskThirteen.model.abstracts.Pet;
+import taskThirteen.service.FamilyService;
+import taskThirteen.model.abstracts.Human;
 import taskThirteen.model.nonAbstarcts.Family;
 import taskThirteen.model.nonAbstarcts.Man;
 import taskThirteen.model.nonAbstarcts.Woman;
-import taskThirteen.service.FamilyService;
+import taskThirteen.uiConsole.MenuUtil;
 
 import java.util.List;
 
@@ -37,11 +39,26 @@ public class FamilyController {
     }
 
     public Family bornChild(Family family, String masculine, String feminine) {
-        return familyService.bornChild(family, masculine, feminine);
+        try {
+            MenuUtil.checkSizeOfFamily(family);
+            return familyService.bornChild(family, masculine, feminine);
+        }
+        catch(FamilyOverflowException e){
+            System.out.println("You crossed the limit");
+            return family;
+        }
     }
 
     public Family adoptChild(Family family, Human human) {
-        return familyService.adoptChild(family, human);
+        try{
+            MenuUtil.checkSizeOfFamily(family);
+            return familyService.adoptChild(family, human);
+        }
+        catch (FamilyOverflowException e){
+            System.out.println("You crossed the limit");
+            return family;
+        }
+
     }
 
     public void deleteAllChildrenOlderThen(int specifiedAge) {

@@ -13,10 +13,10 @@ public class UtilClass {
             System.out.println(question);
             return sc.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("Please enter the correct values in the blanks.");
+            System.err.println("Please enter the correct values in the blanks.");
            return  callResultInt(question);
         }
-        
+
     }
 
     public String callResultString(String question) {

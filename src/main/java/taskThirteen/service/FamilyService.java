@@ -1,11 +1,11 @@
 package taskThirteen.service;
 
 import taskThirteen.familyDao.CollectionFamilyDao;
+import taskThirteen.model.abstracts.Human;
 import taskThirteen.model.abstracts.Pet;
+import taskThirteen.model.nonAbstarcts.Family;
 import taskThirteen.model.nonAbstarcts.Man;
 import taskThirteen.model.nonAbstarcts.Woman;
-import taskThirteen.model.abstracts.Human;
-import taskThirteen.model.nonAbstarcts.Family;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

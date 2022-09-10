@@ -1,11 +1,11 @@
 package taskThirteen.test;
 
 import org.junit.jupiter.api.Test;
-import taskThirteen.model.nonAbstarcts.Woman;
 import taskThirteen.model.enums.DayOfWeek;
 import taskThirteen.model.nonAbstarcts.Dog;
 import taskThirteen.model.nonAbstarcts.Family;
 import taskThirteen.model.nonAbstarcts.Man;
+import taskThirteen.model.nonAbstarcts.Woman;
 
 import java.util.*;
 

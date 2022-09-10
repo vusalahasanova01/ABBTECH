@@ -1,7 +1,10 @@
 package taskThirteen.uiConsole;
 
+import taskThirteen.exception.FamilyOverflowException;
+import taskThirteen.model.nonAbstarcts.Family;
+
 public class MenuUtil {
-    
+    final static int sizeOfFamily = 3;
     public void showMenu(){
         String menu = """
                 1. Fill with test data
@@ -26,13 +29,20 @@ public class MenuUtil {
                 2. Adopt a child
                 3. Return to main menu
                 """;
+        System.out.println(editMenu);
         }
         public void selectGender(){
             String selectGender = """
                     1.boy
                     2.girl
                     """;
+            System.out.println(selectGender);
 
+        }
+        public static void checkSizeOfFamily(Family family)throws FamilyOverflowException {
+        if(family.countFamily()>= sizeOfFamily){
+             throw new FamilyOverflowException();
+        }
         }
 
 

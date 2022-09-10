@@ -5,10 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import taskThirteen.controller.FamilyController;
-import taskThirteen.model.nonAbstarcts.Woman;
+import taskThirteen.model.nonAbstarcts.Man;
 import taskThirteen.model.nonAbstarcts.Dog;
 import taskThirteen.model.nonAbstarcts.Family;
-import taskThirteen.model.nonAbstarcts.Man;
+import taskThirteen.model.nonAbstarcts.Woman;
 
 import java.util.ArrayList;
 import java.util.List;
