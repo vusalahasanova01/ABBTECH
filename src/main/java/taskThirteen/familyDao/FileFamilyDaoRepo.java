@@ -26,7 +26,7 @@ public class FileFamilyDaoRepo implements FileFamilyDao {
     }
 
     @Override
-    public List<Family> loadData() {
+    public List<Family> loadData()  {
         try (ObjectInputStream o = new ObjectInputStream(new FileInputStream(new File("file.bin")))) {
             System.out.println("All families saved in data");
             return (List<Family>) o.readObject();

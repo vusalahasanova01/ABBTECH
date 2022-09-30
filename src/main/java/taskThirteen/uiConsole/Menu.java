@@ -29,6 +29,7 @@ public class Menu {
             String menuNumber = sc.nextLine();
             switch (menuNumber) {
                 case "1":
+
                    collectionFamilyDao.loadAllData();
                     /*
                     Woman zohre1 = new Woman("Zohra", "Qafarova", "17/12/2001", 90,

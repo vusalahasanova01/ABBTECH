@@ -18,9 +18,68 @@ public abstract class Human implements Serializable {
     private String surname;
     private long birthDate;
     private int iq;
-    private Map<DayOfWeek,String> schedule;
+    private Map<DayOfWeek, String> schedule;
     private Family family;
     private EnumForFamily role = EnumForFamily.NONE;
+
+    public Human(String name, String surname, String birthDate, int iq, Family family, Map<DayOfWeek, String> schedule) {
+        this.name = name;
+        this.surname = surname;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.family = family;
+        this.iq = iq;
+        this.schedule = schedule;
+    }
+
+    public Human(String name, String surname, String birthDate) {
+        this.name = name;
+        this.surname = surname;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Human(String name, String surname, int iq, String birthDate) {
+        this.name = name;
+        this.surname = surname;
+        this.iq = iq;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Human(String name, String surname, String birthDate, int iq, Map<DayOfWeek, String> schedule) {
+        this.name = name;
+        this.surname = surname;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.iq = iq;
+        this.schedule = schedule;
+    }
+
+    static {
+        System.out.println("a new class is being loaded " + Human.class.getName());
+    }
+
+    {
+        System.out.println("a new object is created" + this.getClass());
+    }
+
 
     public EnumForFamily getRole() {
         return role;
@@ -58,15 +117,16 @@ public abstract class Human implements Serializable {
     public long getBirthDate() {
         return birthDate;
     }
-    public Date getBirthDateWithDate(){
+
+    public Date getBirthDateWithDate() {
         return new Date(birthDate);
     }
 
-    public int getBirthDateWithYear(){
+    public int getBirthDateWithYear() {
         return 1900 + getBirthDateWithDate().getYear();
     }
 
-    public void setBirthDate(String birthDate)  {
+    public void setBirthDate(String birthDate) {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -89,7 +149,7 @@ public abstract class Human implements Serializable {
         return schedule;
     }
 
-    public void setSchedule(Map<DayOfWeek,String>schedule) {
+    public void setSchedule(Map<DayOfWeek, String> schedule) {
         this.schedule = schedule;
     }
 
@@ -97,61 +157,6 @@ public abstract class Human implements Serializable {
     public Human() {
     }
 
-    public Human(String name, String surname, String birthDate, int iq, Family family, Map<DayOfWeek,String> schedule) {
-        this.name = name;
-        this.surname = surname;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        this.family = family;
-        this.iq = iq;
-        this.schedule = schedule;
-    }
-    public Human(String name, String surname, String birthDate)  {
-        this.name = name;
-        this.surname = surname;
-       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-    public Human(String name, String surname,int iq, String birthDate)  {
-        this.name = name;
-        this.surname = surname;
-        this.iq = iq;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Human(String name, String surname, String birthDate, int iq, Map<DayOfWeek,String> schedule) {
-        this.name = name;
-        this.surname = surname;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            this.birthDate = simpleDateFormat.parse(birthDate).getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        this.iq = iq;
-        this.schedule = schedule;
-    }
-
-    static {
-        System.out.println("a new class is being loaded " + Human.class.getName());
-    }
-
-    {
-        System.out.println("a new object is created" + this.getClass());
-    }
 
     public abstract void greetPet();
 
@@ -168,13 +173,14 @@ public abstract class Human implements Serializable {
         }
 
     }
-    public String describeAge(){
-       return String.format("Year: %d,Month: %d, Day: %d",getBirthDateWithYear(),
-               getBirthDateWithDate().getMonth(),getBirthDateWithDate().getDay());
+
+    public String describeAge() {
+        return String.format("Year: %d,Month: %d, Day: %d", getBirthDateWithYear(),
+                getBirthDateWithDate().getMonth(), getBirthDateWithDate().getDay());
     }
 
     public boolean feedPet(boolean timeForFeed) {
-        if(family.getPet().size()== 0) return false;
+        if (family.getPet().size() == 0) return false;
         Random rnd = new Random();
         int randomTrickLevel = rnd.nextInt();
         for (Pet pet : family.getPet()) {
@@ -237,8 +243,8 @@ public abstract class Human implements Serializable {
         if (name == null) result += "}";
         else result += "name='" + name + '\'';
         if (surname != null) result += ", surname='" + surname + '\'';
-        if (birthDate!= 0)
-        {  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        if (birthDate != 0) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
             result += ", birthdate=" + simpleDateFormat.format(new Date(birthDate));
         }
         if (iq != 0) result += ", iq=" + iq + ", ";
