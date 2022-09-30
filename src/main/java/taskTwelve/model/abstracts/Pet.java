@@ -13,6 +13,29 @@ public abstract class Pet {
     private int trickLevel;
     private Set<String> habits;
 
+    //constructors
+    public Pet() {
+    }
+
+    public Pet(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Pet(String nickname, int age, int trickLevel, Set<String> habits) {
+        this.nickname = nickname;
+        this.age = age;
+        this.trickLevel = trickLevel;
+        this.habits = habits;
+    }
+
+    static {
+        System.out.println("a new class is being loaded " + Pet.class.getName());
+    }
+
+    {
+        System.out.println("a new object is created" + this.getClass());
+    }
+
     public Species getSpecies() {
         return species;
     }
@@ -53,28 +76,6 @@ public abstract class Pet {
         this.habits = habits;
     }
 
-    //constructors
-    public Pet() {
-    }
-
-    public Pet(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public Pet(String nickname, int age, int trickLevel,Set<String> habits) {
-        this.nickname = nickname;
-        this.age = age;
-        this.trickLevel = trickLevel;
-        this.habits = habits;
-    }
-
-    static {
-        System.out.println("a new class is being loaded " + Pet.class.getName());
-    }
-
-    {
-        System.out.println("a new object is created" + this.getClass());
-    }
 
     public void eat() {
         System.out.println("I am eating");
@@ -120,9 +121,9 @@ public abstract class Pet {
         else result += "animal doesn't have fur";
         if (species.getNumberOfLegs() != 0) result += "number of legs " + species.getNumberOfLegs();
         if (nickname != null) result += ", nickname='" + nickname + '\'';
-        if (age != 0) result += ", age=" + age ;
+        if (age != 0) result += ", age=" + age;
         if (trickLevel != 0) result += ", trickLevel=" + trickLevel;
-        if (habits != null) result += ", habits=" +habits +
+        if (habits != null) result += ", habits=" + habits +
                 '}';
         return result;
 

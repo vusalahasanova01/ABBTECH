@@ -22,6 +22,10 @@ public abstract class Human implements Serializable {
     private Family family;
     private EnumForFamily role = EnumForFamily.NONE;
 
+    // constructors
+    public Human() {
+    }
+
     public Human(String name, String surname, String birthDate, int iq, Family family, Map<DayOfWeek, String> schedule) {
         this.name = name;
         this.surname = surname;
@@ -151,10 +155,6 @@ public abstract class Human implements Serializable {
 
     public void setSchedule(Map<DayOfWeek, String> schedule) {
         this.schedule = schedule;
-    }
-
-    // constructors
-    public Human() {
     }
 
 

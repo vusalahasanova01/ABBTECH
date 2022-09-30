@@ -15,6 +15,7 @@ public abstract class Pet implements Serializable {
     private int trickLevel;
     private Set<String> habits;
 
+    //constructors
     public Pet() {
     }
 
@@ -77,7 +78,6 @@ public abstract class Pet implements Serializable {
         this.habits = habits;
     }
 
-    //constructors
 
     public void eat() {
         System.out.println("I am eating");
